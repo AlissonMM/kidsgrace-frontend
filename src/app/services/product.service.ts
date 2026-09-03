@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Product {
   id?: number;
@@ -21,7 +22,7 @@ export interface Product {
 })
 export class ProductService {
 
-  private apiUrl = 'http://localhost:8080/toys'
+  private apiUrl = `${environment.apiUrl}/toys`
 
   private productsSubject = new BehaviorSubject<Product[]>([]);
   public products$ = this.productsSubject.asObservable();
