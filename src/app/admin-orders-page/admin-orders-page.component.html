@@ -1,0 +1,46 @@
+<div class="edit-header">
+  <div class="header-content">
+    <h1 class="project-name" (click)="irParaAdmin()">KidsGrace</h1>
+  </div>
+</div>
+
+<div class="admin-orders-container">
+  <h2>Vendas / Pedidos</h2>
+
+  <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+  <table class="orders-table" *ngIf="pedidos.length > 0; else semPedidos">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Usuário</th>
+        <th>Data</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pedido of pedidos">
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.userId }}</td>
+        <td>{{ pedido.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>R$ {{ pedido.totalValue | number:'1.2-2' }}</td>
+        <td><span class="status" [ngClass]="pedido.status.toLowerCase()">{{ pedido.status }}</span></td>
+        <td>
+          <button class="btn-action delete-btn" *ngIf="podeCancelar(pedido)" (click)="cancelar(pedido)">
+            Cancelar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #semPedidos>
+    <p>Nenhum pedido registrado ainda.</p>
+  </ng-template>
+</div>
+
+<footer>
+  <app-footer-generic></app-footer-generic>
+</footer>

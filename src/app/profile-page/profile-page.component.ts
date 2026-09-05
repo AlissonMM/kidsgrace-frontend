@@ -2,21 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FooterGenericComponent } from '../footer-generic/footer-generic.component';
 import { CommonModule } from '@angular/common';
-import { jwtDecode } from 'jwt-decode';
 import { UserService } from '../services/user.service';
 import { AvatarService, Pfp } from '../services/avatar.service';
-
-interface CustomJwtPayload {
-  address: string;
-  roles: string[];
-  telephone: string;
-  id: number;
-  email: string;
-  sub: string;
-  iat: number;
-  exp: number;
-}
-
+import { AuthService } from '../auth/auth.service';
 
 type decodedType = {
   id?: number;
@@ -37,18 +25,22 @@ export class ProfilePageComponent {
   avatars: Pfp[] = []
   decoded: decodedType = {}
   
-  constructor(private router: Router, private userService: UserService, private avatarService: AvatarService) { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private avatarService: AvatarService,
+    private authService: AuthService
+  ) { }
 
   decode() {
-    const token = localStorage.getItem('authToken');
+    const currentUser = this.authService.getCurrentUser();
 
-    if (token) {
-      this.decoded.name = jwtDecode<CustomJwtPayload>(token).sub
-      this.decoded.address = jwtDecode<CustomJwtPayload>(token).address
-      this.decoded.email = jwtDecode<CustomJwtPayload>(token).email
-      this.decoded.telephone = jwtDecode<CustomJwtPayload>(token).telephone
-      this.decoded.id = jwtDecode<CustomJwtPayload>(token).id
-
+    if (currentUser) {
+      this.decoded.name = currentUser.sub
+      this.decoded.address = currentUser.address
+      this.decoded.email = currentUser.email
+      this.decoded.telephone = currentUser.telephone
+      this.decoded.id = currentUser.id
     }
   }
 

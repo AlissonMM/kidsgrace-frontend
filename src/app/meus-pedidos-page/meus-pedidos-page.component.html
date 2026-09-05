@@ -1,0 +1,30 @@
+<div class="pedidos-header">
+  <div class="header-content">
+    <h1 class="project-name" (click)="irParaHome()">KidsGrace</h1>
+  </div>
+</div>
+
+<section class="pedidos-container">
+  <h2>Meus Pedidos</h2>
+
+  <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+  <div *ngIf="pedidos.length > 0; else semPedidos">
+    <article *ngFor="let pedido of pedidos" class="pedido-item" (click)="verDetalhe(pedido.id)">
+      <div class="pedido-info">
+        <p><strong>Pedido #{{ pedido.id }}</strong></p>
+        <p>Data: {{ pedido.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+        <p>Total: R$ {{ pedido.totalValue | number:'1.2-2' }}</p>
+      </div>
+      <span class="status" [ngClass]="pedido.status.toLowerCase()">{{ pedido.status }}</span>
+    </article>
+  </div>
+
+  <ng-template #semPedidos>
+    <p>Você ainda não fez nenhum pedido.</p>
+  </ng-template>
+</section>
+
+<footer>
+  <app-footer-generic></app-footer-generic>
+</footer>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterGenericComponent } from '../footer-generic/footer-generic.component';
+import { CartService } from '../cart-page/cart.service';
 
 @Component({
   selector: 'app-login-page',
@@ -18,7 +19,7 @@ export class LoginPageComponent {
     password: ''
   };
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private cartService: CartService) {}
 
   login() {
     console.log(this.usuarioData);
@@ -27,6 +28,7 @@ export class LoginPageComponent {
       next: (response) => {
         console.log('Login realizado com sucesso!', response);
         localStorage.setItem('authToken', response.accessToken);
+        this.cartService.carregarCarrinho();
 
         this.irParaHome();
       },

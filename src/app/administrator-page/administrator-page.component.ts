@@ -33,6 +33,11 @@ export class AdministratorPageComponent implements OnInit {
     this.router.navigate(['edit']);
   }
 
+  irParaPedidos(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['admin/pedidos']);
+  }
+
   editProduct(id: any) {
     this.router.navigate(['/edit', id]);
   }

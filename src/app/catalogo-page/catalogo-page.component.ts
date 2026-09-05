@@ -141,8 +141,10 @@ export class CatalogoPageComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.animatingItem = null;
       const produtoFormatado = this.formatarProdutoParaCarrinho(produto);
-      this.cartService.adicionarProduto(produtoFormatado);
-      console.log('Adicionado ao carrinho:', produtoFormatado);
+      this.cartService.adicionarProduto(produtoFormatado).subscribe({
+        next: () => console.log('Adicionado ao carrinho:', produtoFormatado),
+        error: (err) => console.error('Erro ao adicionar ao carrinho:', err)
+      });
     }, 800);
   }
   
