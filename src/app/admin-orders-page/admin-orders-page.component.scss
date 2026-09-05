@@ -1,0 +1,116 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.edit-header {
+  width: 100%;
+  background: linear-gradient(to right, #5500b5, #dbbbff);
+  color: #ffffff;
+  text-align: center;
+  padding: 50px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.project-name {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Press Start 2P', system-ui;
+  margin: 0;
+}
+
+.admin-orders-container {
+  flex: 1;
+  width: 90%;
+  max-width: 1000px;
+  padding: 40px;
+  background-color: #dbbbff;
+  border-radius: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  border: 3px solid #5500b5;
+  margin: 0 auto;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.admin-orders-container h2 {
+  color: #5500b5;
+  font-family: 'Press Start 2P', system-ui;
+  margin-bottom: 25px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.orders-table th, .orders-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.orders-table th {
+  background-color: #5500b5;
+  color: #fff;
+}
+
+.status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.status.pending_payment {
+  background-color: #d9a400;
+}
+
+.status.paid {
+  background-color: #2e9e4f;
+}
+
+.status.cancelled {
+  background-color: #ff4c4c;
+}
+
+.btn-action {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.delete-btn {
+  background-color: #ff4c4c;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #d63333;
+}
+
+.erro {
+  color: #d63333;
+  font-weight: bold;
+}
+
+footer, app-footer-generic {
+  width: 100%;
+  padding-top: 25px;
+}

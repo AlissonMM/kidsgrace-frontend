@@ -1,0 +1,51 @@
+<div class="checkout-header">
+  <div class="header-content">
+    <h1 class="project-name" (click)="irParaCarrinho()">KidsGrace</h1>
+  </div>
+</div>
+
+<section class="checkout-container">
+  <h2>Finalizar Compra</h2>
+
+  <ng-container *ngIf="!pedido">
+    <div *ngIf="carrinho.length > 0; else carrinhoVazio">
+      <article *ngFor="let produto of carrinho" class="checkout-item">
+        <img [src]="produto.imagem" alt="{{ produto.nome }}" class="item-img" />
+        <div class="item-details">
+          <h3>{{ produto.nome }}</h3>
+          <p>Quantidade: {{ produto.quantidade }}</p>
+          <p>Subtotal: R$ {{ produto.preco * produto.quantidade | number:'1.2-2' }}</p>
+        </div>
+      </article>
+
+      <h3>Total: R$ {{ total | number:'1.2-2' }}</h3>
+
+      <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+      <button class="btn-primary" [disabled]="processando" (click)="finalizarCompra()">
+        {{ processando ? 'Processando...' : 'Finalizar Compra' }}
+      </button>
+    </div>
+
+    <ng-template #carrinhoVazio>
+      <p>Seu carrinho está vazio.</p>
+      <button class="btn-secondary" (click)="irParaCarrinho()">Voltar ao Carrinho</button>
+    </ng-template>
+  </ng-container>
+
+  <div *ngIf="pedido" class="pedido-criado">
+    <p>Pedido #{{ pedido.id }} criado com sucesso!</p>
+    <p>Total: R$ {{ pedido.totalValue | number:'1.2-2' }}</p>
+    <p>Status: {{ pedido.status | orderStatusPt }}</p>
+
+    <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+    <button class="btn-primary" [disabled]="processando" (click)="confirmarPagamento()">
+      {{ processando ? 'Processando...' : 'Confirmar Pagamento (simulado)' }}
+    </button>
+  </div>
+</section>
+
+<footer>
+  <app-footer-generic></app-footer-generic>
+</footer>

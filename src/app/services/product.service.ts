@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Product {
   id?: number;
@@ -14,6 +15,7 @@ export interface Product {
   quantity: number;
   featured?: boolean;
   isVisibleInCatalog?: boolean;
+  stock?: number;
 }
 
 @Injectable({
@@ -21,7 +23,7 @@ export interface Product {
 })
 export class ProductService {
 
-  private apiUrl = 'http://localhost:8080/toys'
+  private apiUrl = `${environment.apiUrl}/toys`
 
   private productsSubject = new BehaviorSubject<Product[]>([]);
   public products$ = this.productsSubject.asObservable();
@@ -51,6 +53,7 @@ export class ProductService {
       price: toy.value,
       quantity: 1,
       isVisibleInCatalog: toy.visibleInCatalog !== undefined ? toy.visibleInCatalog : true,
+      stock: toy.stock ?? 0,
     };
   }
   constructor(private http: HttpClient) { }
@@ -64,7 +67,8 @@ export class ProductService {
     formData.append('value', product.price.toString());
     formData.append('image', imagem);
     formData.append('visibleInCatalog', product.isVisibleInCatalog ? 'true' : 'false'); // Inclui a visibilidade
-  
+    formData.append('stock', (product.stock ?? 0).toString());
+
     return this.http.post<string>(`${this.apiUrl}/insert`, formData, { headers: this.generateHeaders() });
   }
 
@@ -109,6 +113,7 @@ export class ProductService {
     formData.append('description',updatedProduct.description)
     formData.append('brand',updatedProduct.brand)
     formData.append('value', updatedProduct.price.toString())
+    formData.append('stock', (updatedProduct.stock ?? 0).toString())
 
     if (imagem != null || undefined){
         formData.append('image', imagem)

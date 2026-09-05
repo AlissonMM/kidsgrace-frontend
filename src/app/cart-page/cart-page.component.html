@@ -31,6 +31,7 @@
 
     <h3>Total: R$ {{ total | number:'1.2-2' }}</h3>
     <button (click)="limparCarrinho()" class="clear-cart-button">Limpar Carrinho</button>
+    <button (click)="irParaCheckout()" class="checkout-button">Ir para Checkout</button>
   </div>
 
   <ng-template #carrinhoVazio>

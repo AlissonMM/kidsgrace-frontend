@@ -82,8 +82,10 @@ export class DetalheProdutoPageComponent implements OnInit {
     setTimeout(() => {
       this.animatingItem = null;
       const produtoFormatado = this.formatarProdutoParaCarrinho(produto);
-      this.cartService.adicionarProduto(produtoFormatado);
-      console.log(produtoFormatado);
+      this.cartService.adicionarProduto(produtoFormatado).subscribe({
+        next: () => console.log(produtoFormatado),
+        error: (err) => console.error('Erro ao adicionar ao carrinho:', err)
+      });
     }, 800);
   }
 
