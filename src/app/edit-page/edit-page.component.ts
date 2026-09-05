@@ -22,7 +22,8 @@ export class EditPageComponent implements OnInit {
     brand: '',
     price: 0,
     imageUrl: '',
-    quantity: 1
+    quantity: 1,
+    stock: 0
   };
 
 

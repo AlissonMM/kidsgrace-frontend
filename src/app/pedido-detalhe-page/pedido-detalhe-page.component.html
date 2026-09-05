@@ -1,0 +1,38 @@
+<div class="pedido-header">
+  <div class="header-content">
+    <h1 class="project-name" (click)="irParaPedidos()">KidsGrace</h1>
+  </div>
+</div>
+
+<section class="pedido-container">
+  <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+  <ng-container *ngIf="pedido">
+    <h2>Pedido #{{ pedido.id }}</h2>
+    <p class="status" [ngClass]="pedido.status.toLowerCase()">{{ pedido.status | orderStatusPt }}</p>
+    <p>Data: {{ pedido.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+
+    <article *ngFor="let item of pedido.items" class="pedido-item">
+      <img [src]="item.image ? 'data:image/jpeg;base64,' + item.image : 'assets/default-image.jpg'"
+           alt="{{ item.toyName }}" class="item-img" />
+      <div class="item-details">
+        <h3>{{ item.toyName }}</h3>
+        <p>Quantidade: {{ item.quantity }}</p>
+        <p>Preço unitário: R$ {{ item.unitPrice | number:'1.2-2' }}</p>
+        <p>Subtotal: R$ {{ item.subtotal | number:'1.2-2' }}</p>
+      </div>
+    </article>
+
+    <h3>Total: R$ {{ pedido.totalValue | number:'1.2-2' }}</h3>
+
+    <button class="btn-cancel" *ngIf="podeCancelar()" [disabled]="processando" (click)="cancelar()">
+      {{ processando ? 'Cancelando...' : 'Cancelar Pedido' }}
+    </button>
+
+    <button class="btn-secondary" (click)="irParaPedidos()">Voltar para Meus Pedidos</button>
+  </ng-container>
+</section>
+
+<footer>
+  <app-footer-generic></app-footer-generic>
+</footer>

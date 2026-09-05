@@ -15,6 +15,7 @@ export interface Product {
   quantity: number;
   featured?: boolean;
   isVisibleInCatalog?: boolean;
+  stock?: number;
 }
 
 @Injectable({
@@ -52,6 +53,7 @@ export class ProductService {
       price: toy.value,
       quantity: 1,
       isVisibleInCatalog: toy.visibleInCatalog !== undefined ? toy.visibleInCatalog : true,
+      stock: toy.stock ?? 0,
     };
   }
   constructor(private http: HttpClient) { }
@@ -65,7 +67,8 @@ export class ProductService {
     formData.append('value', product.price.toString());
     formData.append('image', imagem);
     formData.append('visibleInCatalog', product.isVisibleInCatalog ? 'true' : 'false'); // Inclui a visibilidade
-  
+    formData.append('stock', (product.stock ?? 0).toString());
+
     return this.http.post<string>(`${this.apiUrl}/insert`, formData, { headers: this.generateHeaders() });
   }
 
@@ -110,6 +113,7 @@ export class ProductService {
     formData.append('description',updatedProduct.description)
     formData.append('brand',updatedProduct.brand)
     formData.append('value', updatedProduct.price.toString())
+    formData.append('stock', (updatedProduct.stock ?? 0).toString())
 
     if (imagem != null || undefined){
         formData.append('image', imagem)

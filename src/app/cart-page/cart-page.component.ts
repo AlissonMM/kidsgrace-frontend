@@ -34,25 +34,37 @@ export class CartPageComponent implements OnInit, OnDestroy {
   }
 
   aumentarQuantidade(produto: any) {
-    this.cartService.atualizarQuantidade(produto, produto.quantidade + 1);
+    this.cartService.atualizarQuantidade(produto, produto.quantidade + 1).subscribe({
+      error: (err) => console.error('Erro ao atualizar quantidade:', err)
+    });
   }
 
   diminuirQuantidade(produto: any) {
     if (produto.quantidade > 1) {
-      this.cartService.atualizarQuantidade(produto, produto.quantidade - 1);
+      this.cartService.atualizarQuantidade(produto, produto.quantidade - 1).subscribe({
+        error: (err) => console.error('Erro ao atualizar quantidade:', err)
+      });
     }
   }
 
   removerProduto(produto: any) {
-    this.cartService.removerProduto(produto);
+    this.cartService.removerProduto(produto).subscribe({
+      error: (err) => console.error('Erro ao remover produto:', err)
+    });
   }
 
   limparCarrinho() {
-    this.cartService.limparCarrinho();
+    this.cartService.limparCarrinho().subscribe({
+      error: (err) => console.error('Erro ao limpar carrinho:', err)
+    });
   }
 
   trackByProduto(index: number, produto: any): number {
     return produto.id;
+  }
+
+  irParaCheckout() {
+    this.router.navigate(['/checkout']);
   }
 
   irParaHome() {
