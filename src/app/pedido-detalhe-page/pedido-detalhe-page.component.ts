@@ -5,10 +5,11 @@ import { OrderService } from '../services/order.service';
 import { AuthService } from '../auth/auth.service';
 import { Order } from '../models/order.model';
 import { FooterGenericComponent } from '../footer-generic/footer-generic.component';
+import { OrderStatusPtPipe } from '../pipes/order-status-pt.pipe';
 
 @Component({
   selector: 'app-pedido-detalhe-page',
-  imports: [CommonModule, FooterGenericComponent],
+  imports: [CommonModule, FooterGenericComponent, OrderStatusPtPipe],
   templateUrl: './pedido-detalhe-page.component.html',
   styleUrls: ['./pedido-detalhe-page.component.scss']
 })

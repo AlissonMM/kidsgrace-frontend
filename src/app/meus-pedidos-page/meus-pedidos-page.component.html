@@ -16,7 +16,7 @@
         <p>Data: {{ pedido.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
         <p>Total: R$ {{ pedido.totalValue | number:'1.2-2' }}</p>
       </div>
-      <span class="status" [ngClass]="pedido.status.toLowerCase()">{{ pedido.status }}</span>
+      <span class="status" [ngClass]="pedido.status.toLowerCase()">{{ pedido.status | orderStatusPt }}</span>
     </article>
   </div>
 

@@ -36,7 +36,7 @@
   <div *ngIf="pedido" class="pedido-criado">
     <p>Pedido #{{ pedido.id }} criado com sucesso!</p>
     <p>Total: R$ {{ pedido.totalValue | number:'1.2-2' }}</p>
-    <p>Status: {{ pedido.status }}</p>
+    <p>Status: {{ pedido.status | orderStatusPt }}</p>
 
     <p class="erro" *ngIf="erro">{{ erro }}</p>
 

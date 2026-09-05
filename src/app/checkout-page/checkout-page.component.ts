@@ -5,10 +5,11 @@ import { CartService, ProdutoCarrinho } from '../cart-page/cart.service';
 import { OrderService } from '../services/order.service';
 import { Order } from '../models/order.model';
 import { FooterGenericComponent } from '../footer-generic/footer-generic.component';
+import { OrderStatusPtPipe } from '../pipes/order-status-pt.pipe';
 
 @Component({
   selector: 'app-checkout-page',
-  imports: [CommonModule, FooterGenericComponent],
+  imports: [CommonModule, FooterGenericComponent, OrderStatusPtPipe],
   templateUrl: './checkout-page.component.html',
   styleUrls: ['./checkout-page.component.scss']
 })
