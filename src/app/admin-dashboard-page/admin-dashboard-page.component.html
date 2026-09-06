@@ -1,0 +1,57 @@
+<div class="edit-header">
+  <div class="header-content">
+    <h1 class="project-name" (click)="irParaAdmin()">KidsGrace</h1>
+  </div>
+</div>
+
+<div class="dashboard-container">
+  <h2>Dashboard de Métricas</h2>
+
+  <p class="erro" *ngIf="erro">{{ erro }}</p>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <span class="kpi-value">{{ totalEvents }}</span>
+      <span class="kpi-label">Eventos registrados</span>
+    </div>
+    <div class="kpi-card" *ngIf="loginStats">
+      <span class="kpi-value">{{ loginStats.successRate | number:'1.0-1' }}%</span>
+      <span class="kpi-label">Taxa de sucesso de login</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">R$ {{ totalRevenue | number:'1.2-2' }}</span>
+      <span class="kpi-label">Receita confirmada</span>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Eventos por Entidade</h3>
+      <canvas baseChart [data]="entityChartData" [options]="entityChartOptions" type="pie"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>Receita por Categoria</h3>
+      <canvas baseChart [data]="revenueChartData" [options]="revenueChartOptions" type="bar"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h3>Produtos Mais Vendidos</h3>
+      <canvas baseChart [data]="topProductsChartData" [options]="topProductsChartOptions" type="bar"></canvas>
+    </div>
+
+    <div class="chart-card chart-wide">
+      <div class="chart-header-row">
+        <h3>Linha do Tempo (últimos 30 dias)</h3>
+        <select [(ngModel)]="selectedPreset" (ngModelChange)="onPresetChange()">
+          <option *ngFor="let p of presets" [ngValue]="p">{{ p.label }}</option>
+        </select>
+      </div>
+      <canvas baseChart [data]="timeSeriesChartData" [options]="timeSeriesChartOptions" type="line"></canvas>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <app-footer-generic></app-footer-generic>
+</footer>
