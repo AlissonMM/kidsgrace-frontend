@@ -43,7 +43,7 @@ export class CatalogoComponent implements OnInit {
   
 
   goProduct(productId: any){
-    this.router.navigate(["/toys", productId])
+    this.router.navigate(["/products", productId])
   }
 
   adicionarItem(produto: any, event: MouseEvent) {

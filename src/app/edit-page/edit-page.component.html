@@ -1,6 +1,6 @@
 <div class="edit-header">
   <div class="header-content">
-    <h1 class="project-name" (click)="irParaHome($event)">KidsGrace</h1>
+    <h1 class="project-name" (click)="irParaHome($event)">Mork Store</h1>
   </div>
 </div>
 
@@ -21,10 +21,7 @@
 
     <label for="character-class">Tipo:</label>
     <select id="character-class" class="input-field" [(ngModel)]="produto.type" name="type">
-      <option value="Action-Figure">Action-Figure</option>
-      <option value="Brinquedo">Brinquedo</option>
-      <option value="Funko">Funko</option>
-      <option value="Estatueta">Estatueta</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria.value">{{ categoria.label }}</option>
     </select>
 
     <label for="character-level">Preço:</label>
@@ -41,6 +38,16 @@
     <div *ngIf="imagePreview">
       <img [src]="imagePreview" alt="Imagem do produto" width="100" height="100" style="object-fit: cover;">
     </div>
+
+    <label>Atributos adicionais (opcional — ex.: sistema, raridade, material):</label>
+    <div *ngFor="let atributo of atributos; let i = index" class="attribute-row">
+      <input type="text" class="input-field" placeholder="Chave (ex.: sistema)" [(ngModel)]="atributo.chave"
+        [name]="'atributo-chave-' + i">
+      <input type="text" class="input-field" placeholder="Valor (ex.: D&D 5e)" [(ngModel)]="atributo.valor"
+        [name]="'atributo-valor-' + i">
+      <button type="button" class="btn-secondary" (click)="removerAtributo(i)">Remover</button>
+    </div>
+    <button type="button" class="btn-secondary" (click)="adicionarAtributo()">+ Adicionar atributo</button>
 
     <button type="submit" class="btn-primary">Salvar</button>
     <button type="button" class="btn-secondary" id="cancel-edit" (click)="cancelar()">Cancelar</button>

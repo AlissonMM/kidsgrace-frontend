@@ -1,6 +1,6 @@
 <div class="pedido-header">
   <div class="header-content">
-    <h1 class="project-name" (click)="irParaPedidos()">KidsGrace</h1>
+    <h1 class="project-name" (click)="irParaPedidos()">Mork Store</h1>
   </div>
 </div>
 
@@ -14,9 +14,9 @@
 
     <article *ngFor="let item of pedido.items" class="pedido-item">
       <img [src]="item.image ? 'data:image/jpeg;base64,' + item.image : 'assets/default-image.jpg'"
-           alt="{{ item.toyName }}" class="item-img" />
+           alt="{{ item.productName }}" class="item-img" />
       <div class="item-details">
-        <h3>{{ item.toyName }}</h3>
+        <h3>{{ item.productName }}</h3>
         <p>Quantidade: {{ item.quantity }}</p>
         <p>Preço unitário: R$ {{ item.unitPrice | number:'1.2-2' }}</p>
         <p>Subtotal: R$ {{ item.subtotal | number:'1.2-2' }}</p>

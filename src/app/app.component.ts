@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'kids-grace';
+  title = 'mork-store';
 
   mostrarTransicao = true;
 

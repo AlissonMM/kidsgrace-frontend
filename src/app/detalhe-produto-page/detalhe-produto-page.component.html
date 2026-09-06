@@ -11,6 +11,16 @@
       <p><strong>Marca:</strong> {{ produto.brand }}</p>
       <p><strong>Categoria:</strong> {{ produto.type }}</p>
       <p><strong>Descrição:</strong> <br /> {{ produto.description }}</p>
+
+      <div *ngIf="atributosDoProduto.length > 0" class="produto-atributos">
+        <strong>Detalhes adicionais:</strong>
+        <ul>
+          <li *ngFor="let atributo of atributosDoProduto">
+            <strong>{{ atributo[0] }}:</strong> {{ atributo[1] }}
+          </li>
+        </ul>
+      </div>
+
       <h2 class="produto-preco"><strong>R$ {{ produto.price }}</strong></h2>
       <br><br>
       

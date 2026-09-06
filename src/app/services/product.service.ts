@@ -16,6 +16,7 @@ export interface Product {
   featured?: boolean;
   isVisibleInCatalog?: boolean;
   stock?: number;
+  attributes?: { [key: string]: string };
 }
 
 @Injectable({
@@ -23,7 +24,7 @@ export interface Product {
 })
 export class ProductService {
 
-  private apiUrl = `${environment.apiUrl}/toys`
+  private apiUrl = `${environment.apiUrl}/products`
 
   private productsSubject = new BehaviorSubject<Product[]>([]);
   public products$ = this.productsSubject.asObservable();
@@ -41,19 +42,20 @@ export class ProductService {
 
 
    
-  private mapToyToProduct(toy: any): Product {
-    const imageUrl = toy.image ? `data:image/jpeg;base64,${toy.image}` : 'assets/default-image.jpg';
+  private mapProductResponseToProduct(product: any): Product {
+    const imageUrl = product.image ? `data:image/jpeg;base64,${product.image}` : 'assets/default-image.jpg';
     return {
-      id: toy.id,
-      name: toy.name,
-      type: toy.category,
-      description: toy.description,
-      brand: toy.brand,
+      id: product.id,
+      name: product.name,
+      type: product.category,
+      description: product.description,
+      brand: product.brand,
       imageUrl: imageUrl,
-      price: toy.value,
+      price: product.value,
       quantity: 1,
-      isVisibleInCatalog: toy.visibleInCatalog !== undefined ? toy.visibleInCatalog : true,
-      stock: toy.stock ?? 0,
+      isVisibleInCatalog: product.visibleInCatalog !== undefined ? product.visibleInCatalog : true,
+      stock: product.stock ?? 0,
+      attributes: product.attributes ?? {},
     };
   }
   constructor(private http: HttpClient) { }
@@ -68,14 +70,15 @@ export class ProductService {
     formData.append('image', imagem);
     formData.append('visibleInCatalog', product.isVisibleInCatalog ? 'true' : 'false'); // Inclui a visibilidade
     formData.append('stock', (product.stock ?? 0).toString());
+    formData.append('attributesJson', JSON.stringify(product.attributes ?? {}));
 
     return this.http.post<string>(`${this.apiUrl}/insert`, formData, { headers: this.generateHeaders() });
   }
 
   loadProductsFromServer(): void {
     this.http.get<Product[]>(`${this.apiUrl}/findAll`).subscribe({
-      next: (toys) => {
-        const products = toys.map(this.mapToyToProduct)
+      next: (response) => {
+        const products = response.map(this.mapProductResponseToProduct)
         this.productsSubject.next(products)
       },
       error: (err) => console.error('Erro ao carregar produtos:', err)
@@ -114,6 +117,7 @@ export class ProductService {
     formData.append('brand',updatedProduct.brand)
     formData.append('value', updatedProduct.price.toString())
     formData.append('stock', (updatedProduct.stock ?? 0).toString())
+    formData.append('attributesJson', JSON.stringify(updatedProduct.attributes ?? {}))
 
     if (imagem != null || undefined){
         formData.append('image', imagem)

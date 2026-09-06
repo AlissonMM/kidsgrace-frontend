@@ -35,5 +35,5 @@ export class CardReutComponent {
     this.adicionar.emit(event);
   }
   irParaDetalheProduto(productId: any){
-    this.router.navigate(["/toys", productId])  }
+    this.router.navigate(["/products", productId])  }
 }

@@ -30,6 +30,13 @@ export class DetalheProdutoPageComponent implements OnInit {
     this.produto = this.productService.getProductById(id);
   }
 
+  // Object.entries não pode ser chamado direto do template — expõe os
+  // atributos livres do produto (ex.: sistema, raridade) como uma lista de
+  // pares [chave, valor] para o *ngFor.
+  get atributosDoProduto(): [string, string][] {
+    return Object.entries(this.produto?.attributes ?? {});
+  }
+
   adicionarItem(produto: any, event: MouseEvent) {
     const target = event.target as HTMLElement;
     const rect = target.getBoundingClientRect();

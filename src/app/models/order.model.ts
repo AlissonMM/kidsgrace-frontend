@@ -2,8 +2,8 @@ export type OrderStatus = 'PENDING_PAYMENT' | 'PAID' | 'CANCELLED';
 
 export interface OrderItem {
   id: number;
-  toyId: number;
-  toyName: string;
+  productId: number;
+  productName: string;
   unitPrice: number;
   quantity: number;
   subtotal: number;

@@ -1,6 +1,6 @@
-# 🧸 Catálogo de Brinquedos - Kids Grace
+# 🧸 Mork Store
 
-Aplicação web desenvolvida com Angular que simula um catálogo de brinquedos. A aplicação possui páginas para visualização de produtos (usuário comum) e administração (admin), com recursos como cadastro, login, controle de visibilidade e carrinho de compras.
+Aplicação web desenvolvida com Angular que simula uma loja de colecionáveis e itens de RPG (miniaturas, dados, livros de sistema, cartas, board games, action figures e funkos). A aplicação possui páginas para visualização de produtos (usuário comum) e administração (admin), com recursos como cadastro, login, controle de visibilidade, carrinho de compras e pedidos.
 
 ---
 

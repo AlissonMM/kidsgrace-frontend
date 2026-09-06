@@ -10,6 +10,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BuscaService } from '../services/busca.service';
 import { Subscription } from 'rxjs';
+import { PRODUCT_CATEGORIES } from '../shared/product-categories';
 
 @Component({
   selector: 'app-catalogo-page',
@@ -28,6 +29,8 @@ export class CatalogoPageComponent implements OnInit, AfterViewInit, OnDestroy {
   filtroTexto = '';
   filtroCategoria = '';
   filtroPreco = '';
+
+  categorias = PRODUCT_CATEGORIES;
 
   animatingItem: any = null;
 

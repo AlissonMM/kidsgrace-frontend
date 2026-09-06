@@ -14,7 +14,7 @@ import {
 } from '../models/analytics.model';
 
 /**
- * Fala com o kidsgrace-analytics-service (porta separada da API principal —
+ * Fala com o morkstore-analytics-service (porta separada da API principal —
  * ver environment.analyticsApiUrl). Exige token de ADMIN; o authInterceptor
  * já anexa o header Authorization em toda requisição HttpClient, mesmo para
  * uma origem diferente da API principal.
