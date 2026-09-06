@@ -38,6 +38,11 @@ export class AdministratorPageComponent implements OnInit {
     this.router.navigate(['admin/pedidos']);
   }
 
+  irParaDashboard(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['admin/dashboard']);
+  }
+
   editProduct(id: any) {
     this.router.navigate(['/edit', id]);
   }

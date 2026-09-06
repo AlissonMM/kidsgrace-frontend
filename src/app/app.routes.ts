@@ -19,6 +19,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { MeusPedidosPageComponent } from './meus-pedidos-page/meus-pedidos-page.component';
 import { PedidoDetalhePageComponent } from './pedido-detalhe-page/pedido-detalhe-page.component';
 import { AdminOrdersPageComponent } from './admin-orders-page/admin-orders-page.component';
+import { AdminDashboardPageComponent } from './admin-dashboard-page/admin-dashboard-page.component';
 import { authGuard, adminGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'pedidos/:id', component: PedidoDetalhePageComponent, canActivate: [authGuard] },
   { path: 'admin', component: AdministratorPageComponent },
   { path: 'admin/pedidos', component: AdminOrdersPageComponent, canActivate: [adminGuard] },
+  { path: 'admin/dashboard', component: AdminDashboardPageComponent, canActivate: [adminGuard] },
   { path: 'edit', component: EditPageComponent },
   { path: 'edit/:id', component: EditPageComponent },
   { path: 'catalogo', component: CatalogoPageComponent },
