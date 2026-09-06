@@ -1,0 +1,138 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.edit-header {
+  width: 100%;
+  background: linear-gradient(to right, #5500b5, #dbbbff);
+  color: #ffffff;
+  text-align: center;
+  padding: 50px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.project-name {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Press Start 2P', system-ui;
+  margin: 0;
+}
+
+.dashboard-container {
+  flex: 1;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.dashboard-container h2 {
+  color: #5500b5;
+  font-family: 'Press Start 2P', system-ui;
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+}
+
+.erro {
+  color: #d63333;
+  font-weight: bold;
+}
+
+.kpi-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.kpi-card {
+  background-color: #dbbbff;
+  border: 3px solid #5500b5;
+  border-radius: 15px;
+  padding: 20px 30px;
+  min-width: 200px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #5500b5;
+}
+
+.kpi-label {
+  margin-top: 8px;
+  color: #1d1d1b;
+  font-weight: bold;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.chart-card {
+  background-color: #f8f8f8;
+  border: 2px solid #5500b5;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.chart-card h3 {
+  color: #5500b5;
+  margin: 0 0 15px;
+  text-align: center;
+}
+
+.chart-wide {
+  grid-column: 1 / -1;
+}
+
+.chart-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.chart-header-row h3 {
+  margin: 0;
+}
+
+.chart-header-row select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid #5500b5;
+  font-weight: bold;
+  color: #5500b5;
+  background-color: #fff;
+}
+
+footer, app-footer-generic {
+  width: 100%;
+  padding-top: 25px;
+}
+
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
