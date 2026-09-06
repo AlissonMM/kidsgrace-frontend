@@ -1,9 +1,9 @@
 .footer {
-    background: linear-gradient(to bottom, black, #2c003e);
-    color: white;
-    padding: 10px 5px;
+    background: var(--mork-void);
+    color: var(--mork-bone);
+    padding: 24px 16px;
     text-align: center;
-    border-top: 4px solid #dbbbff;
+    border-top: 2px solid var(--mork-border-strong);
     width: 100%;
 }
 
@@ -15,16 +15,17 @@
     align-items: center;
 }
 
-.footer-logo img {
-    max-width: 250px;
-    height: auto;
+.footer-mark {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: .08em;
+    color: var(--mork-ash);
 }
 
 .footer-bottom {
-    margin-top: auto;
-    font-size: 0.9rem;
-    border-top: 1px solid #ffffff40;
+    margin-top: 12px;
+    font-size: .8rem;
+    border-top: 1px solid var(--mork-border);
     padding-top: 10px;
-    color: #d3d3d3;
+    color: var(--mork-ash);
 }
-

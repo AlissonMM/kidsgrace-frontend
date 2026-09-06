@@ -4,17 +4,14 @@
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: var(--mork-void);
 }
 
-/* HEADER */
 .cart-header {
   width: 100%;
-  background: linear-gradient(to right, #5500b5, #dbbbff);
-  color: #ffffff;
+  color: var(--mork-bone);
   text-align: center;
-  padding: 50px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 40px 0;
 }
 
 .header-content {
@@ -23,33 +20,23 @@
   align-items: center;
 }
 
-.project-name {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: 'Press Start 2P', system-ui;
-  margin: 0;
-  cursor: pointer;
-}
-
 .cart-container {
   width: 80%;
   max-width: 900px;
   padding: 40px;
-  background-color: #dbbbff;
-  border-radius: 15px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--mork-surface);
+  border: 1px solid var(--mork-border);
   text-align: center;
-  border: 3px solid #5500b5;
   margin: auto;
   margin-top: 30px;
 }
 
 .cart-container h2 {
-  font-family: 'Press Start 2P', system-ui;
+  font-family: var(--font-display);
   font-size: 2rem;
-  color: #5500b5;
+  letter-spacing: .01em;
+  color: var(--mork-acid);
   margin-bottom: 25px;
-  text-shadow: 1px 1px 2px #6500d6;
 }
 
 .cart-item {
@@ -57,13 +44,13 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--mork-border);
   padding: 20px;
   gap: 20px;
 }
 
 .item-img {
-  width: 140x;
+  width: 140px;
   height: 140px;
   object-fit: cover;
   margin-right: 20px;
@@ -76,6 +63,7 @@
   justify-content: center;
   text-align: left;
   padding-right: 10px;
+  color: var(--mork-bone);
 }
 
 .item-actions {
@@ -88,123 +76,129 @@
 
 .item-actions .btn-add-to-cart,
 .item-actions .btn-remove {
-  background-color: #5500b5;
-  color: #ffffff;
+  background: transparent;
+  color: var(--mork-acid);
+  border: 2px solid var(--mork-acid);
   padding: 8px 15px;
-  font-size: 1rem;
-  border: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
   cursor: pointer;
-  border-radius: 5px;
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: 0.3s;
-  font-weight: bold;
+  transition: .15s;
 }
 
 .item-actions .btn-add-to-cart:hover,
 .item-actions .btn-remove:hover {
-  background-color: #6500d6;
+  background: var(--mork-acid);
+  color: var(--mork-void);
 }
 
 .delete-btn {
-  background-color: #ff4c4c;
-  color: #fff;
+  background: transparent;
+  color: var(--mork-wound);
+  border: 2px solid var(--mork-wound);
   padding: 8px 15px;
-  font-size: 1rem;
-  border: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
   cursor: pointer;
-  border-radius: 5px;
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: 0.3s;
-  font-weight: bold;
+  transition: .15s;
 }
 
 .delete-btn:hover {
-  background-color: #d63333;
+  background: var(--mork-wound);
+  color: var(--mork-void);
 }
 
 .item-actions .btn-quantity {
-  font-size: 1.5rem;
-  color: #5500b5;
+  font-size: 1.4rem;
+  color: var(--mork-ash);
   cursor: pointer;
-  background-color: transparent;
+  background: transparent;
   border: none;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Press Start 2P', system-ui;
-  padding: 8px 12px;
-  transition: 0.3s;
+  padding: 8px 6px;
+  transition: .15s;
 }
 
 .item-actions .btn-quantity:hover {
-  color: #6500d6;
-  transform: scale(1.05);
+  color: var(--mork-acid);
 }
 
 .item-actions .btn-quantity:active {
-  transform: scale(1);
-}
-
-.item-actions .btn-quantity i {
-  font-size: 1.5rem;
+  transform: scale(0.95);
 }
 
 .item-actions .decrease:hover {
-  color: #e65c5c;
+  color: var(--mork-wound);
 }
 
 .item-actions .increase:hover {
-  color: #5cb85c;
+  color: var(--mork-acid);
 }
 
 .quantity {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #1d1d1b;
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  color: var(--mork-bone);
   min-width: 30px;
   text-align: center;
-  border-radius: 5px;
   padding: 5px 10px;
 }
 
 .clear-cart-button {
-  background-color: #5500b5;
-  color: #ffffff;
-  padding: 15px 25px;
-  font-size: 1.1rem;
-  border-radius: 5px;
+  background: transparent;
+  color: var(--mork-ash);
+  border: 2px solid var(--mork-border-strong);
+  padding: 14px 25px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: 0.3s;
-  font-weight: bold;
+  transition: .15s;
 }
 
 .clear-cart-button:hover {
-  background-color: #6500d6;
+  border-color: var(--mork-wound);
+  color: var(--mork-wound);
 }
 
 .checkout-button {
-  background-color: #2e9e4f;
-  color: #ffffff;
-  padding: 15px 25px;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  border: none;
+  background: var(--mork-acid);
+  color: var(--mork-void);
+  padding: 14px 25px;
+  border: 2px solid var(--mork-acid);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: 0.3s;
-  font-weight: bold;
+  transition: .15s;
   margin-left: 10px;
 }
 
 .checkout-button:hover {
-  background-color: #257f40;
+  background: var(--mork-acid-dim);
+  border-color: var(--mork-acid-dim);
 }
 
 .cart-container h3 {
-  color: #5500b5;
+  color: var(--mork-bone);
   margin-top: 20px;
 }
 
@@ -234,4 +228,3 @@ footer, app-footer-generic {
     width: 100%;
   }
 }
-

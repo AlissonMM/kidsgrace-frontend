@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input, ElementRef, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService, Product } from '../services/product.service';
 import { CommonModule } from '@angular/common';
@@ -6,14 +6,15 @@ import { FooterGenericComponent } from '../footer-generic/footer-generic.compone
 import  { HeaderComponent } from '../header/header.component'
 import { CartService } from '../cart-page/cart.service';
 import { Router } from '@angular/router';
+import { ProductCoverComponent } from '../product-cover/product-cover.component';
 
 @Component({
   selector: 'app-detalhe-produto-page',
-  imports: [FooterGenericComponent, CommonModule, HeaderComponent],
+  imports: [FooterGenericComponent, CommonModule, HeaderComponent, ProductCoverComponent],
   templateUrl: './detalhe-produto-page.component.html',
   styleUrl: './detalhe-produto-page.component.scss'
 })
-export class DetalheProdutoPageComponent implements OnInit {
+export class DetalheProdutoPageComponent implements OnInit, OnDestroy {
   produto?: Product;
   animatingItem: any = null;
 
@@ -26,8 +27,15 @@ export class DetalheProdutoPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Página de vitrine: liga o visual "intenso" do Mörk Store Design System.
+    document.body.classList.add('mork-intense');
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.produto = this.productService.getProductById(id);
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('mork-intense');
   }
 
   // Object.entries não pode ser chamado direto do template — expõe os

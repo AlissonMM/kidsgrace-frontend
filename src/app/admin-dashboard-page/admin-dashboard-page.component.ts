@@ -36,7 +36,7 @@ export class AdminDashboardPageComponent implements OnInit {
 
   revenueChartData: ChartData<'bar'> = {
     labels: [],
-    datasets: [{ data: [], label: 'Receita (R$)', backgroundColor: '#5500b5' }]
+    datasets: [{ data: [], label: 'Receita (R$)', backgroundColor: '#ffe800' }]
   };
   revenueChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
@@ -46,7 +46,7 @@ export class AdminDashboardPageComponent implements OnInit {
 
   topProductsChartData: ChartData<'bar'> = {
     labels: [],
-    datasets: [{ data: [], label: 'Unidades vendidas', backgroundColor: '#6500d6' }]
+    datasets: [{ data: [], label: 'Unidades vendidas', backgroundColor: '#ff3fb4' }]
   };
   topProductsChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
@@ -99,7 +99,7 @@ export class AdminDashboardPageComponent implements OnInit {
           labels: entries.map(([entity]) => this.traduzirEntidade(entity)),
           datasets: [{
             data: entries.map(([, percentual]) => percentual),
-            backgroundColor: ['#5500b5', '#8b5cf6', '#d9a400']
+            backgroundColor: ['#ffe800', '#ff4d6d', '#d9a400']
           }]
         };
       },
@@ -118,7 +118,7 @@ export class AdminDashboardPageComponent implements OnInit {
         this.totalRevenue = categorias.reduce((soma, item) => soma + item.totalRevenue, 0);
         this.revenueChartData = {
           labels: categorias.map(c => c.category),
-          datasets: [{ data: categorias.map(c => c.totalRevenue), label: 'Receita (R$)', backgroundColor: '#5500b5' }]
+          datasets: [{ data: categorias.map(c => c.totalRevenue), label: 'Receita (R$)', backgroundColor: '#ffe800' }]
         };
       },
       error: (err) => this.tratarErro(err)
@@ -128,7 +128,7 @@ export class AdminDashboardPageComponent implements OnInit {
       next: (produtos) => {
         this.topProductsChartData = {
           labels: produtos.map(p => this.nomeProduto(p.entityId)),
-          datasets: [{ data: produtos.map(p => p.totalCount), label: 'Unidades vendidas', backgroundColor: '#6500d6' }]
+          datasets: [{ data: produtos.map(p => p.totalCount), label: 'Unidades vendidas', backgroundColor: '#ff3fb4' }]
         };
       },
       error: (err) => this.tratarErro(err)
@@ -152,8 +152,8 @@ export class AdminDashboardPageComponent implements OnInit {
           datasets: [{
             data: pontos.map(p => p.count),
             label: this.selectedPreset.label,
-            borderColor: '#5500b5',
-            backgroundColor: 'rgba(85,0,181,0.15)',
+            borderColor: '#ffe800',
+            backgroundColor: 'rgba(255,232,0,0.15)',
             fill: true,
             tension: 0.3
           }]

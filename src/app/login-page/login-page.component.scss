@@ -4,16 +4,14 @@
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: var(--mork-void);
 }
 
 .login-header {
   width: 100%;
-  background: linear-gradient(to right, #5500b5, #dbbbff);
-  color: #ffffff;
+  color: var(--mork-bone);
   text-align: center;
-  padding: 50px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 40px 0;
 }
 
 .header-content {
@@ -23,30 +21,24 @@
   cursor: pointer;
 }
 
-.project-name {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: 'Press Start 2P', system-ui;
-  margin: 0;
-}
-
 .login-container {
   width: 600px;
+  max-width: 92vw;
   padding: 40px;
-  background-color: #dbbbff;
-  border-radius: 15px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--mork-surface);
+  border: 1px solid var(--mork-border);
   text-align: center;
-  border: 3px solid #5500b5;
   margin: auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 
 .login-container h2 {
-  color: #5500b5;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: .01em;
+  color: var(--mork-acid);
   margin-bottom: 25px;
-  text-shadow: 1px 1px 2px #6500d6;
 }
 
 .input-group {
@@ -57,43 +49,43 @@
 }
 
 .input-group label {
-  color: #1d1d1b;
-  font-weight: bold;
+  color: var(--mork-ash);
   margin-bottom: 8px;
 }
 
 .input-group input {
   padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   font-size: 1rem;
 }
 
 .login-container button {
-  background-color: #5500b5;
-  color: #ffffff;
-  border: none;
-  padding: 15px 25px;
-  font-size: 1.1rem;
-  border-radius: 5px;
+  background: transparent;
+  color: var(--mork-acid);
+  border: 2px solid var(--mork-acid);
+  padding: 13px 25px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: 0.3s;
-  font-weight: bold;
+  transition: .15s;
 }
 
 .login-container button:hover {
-  background-color: #6500d6;
+  background: var(--mork-acid);
+  color: var(--mork-void);
 }
 
 .register-link {
   margin-top: 25px;
-  color: #1d1d1b;
+  color: var(--mork-ash);
 }
 
 .register-link a {
-  color: #5500b5;
+  color: var(--mork-acid);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .register-link a:hover {

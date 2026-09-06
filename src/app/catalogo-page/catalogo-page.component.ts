@@ -45,6 +45,9 @@ export class CatalogoPageComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // Página de vitrine: liga o visual "intenso" do Mörk Store Design System.
+    document.body.classList.add('mork-intense');
+
     this.productService.loadProductsFromServer();
 
     this.cartService.quantidadeTotal$.subscribe(quantidade => {
@@ -81,6 +84,7 @@ export class CatalogoPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    document.body.classList.remove('mork-intense');
     this.buscaService.atualizarTermoBusca('');
     this.filtroTexto = '';
     this.filtroCategoria = '';

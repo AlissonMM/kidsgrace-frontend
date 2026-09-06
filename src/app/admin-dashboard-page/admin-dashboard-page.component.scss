@@ -2,15 +2,14 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--mork-void);
 }
 
 .edit-header {
   width: 100%;
-  background: linear-gradient(to right, #5500b5, #dbbbff);
-  color: #ffffff;
+  color: var(--mork-bone);
   text-align: center;
-  padding: 50px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 40px 0;
   margin-bottom: 25px;
 }
 
@@ -19,13 +18,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-
-.project-name {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: 'Press Start 2P', system-ui;
-  margin: 0;
 }
 
 .dashboard-container {
@@ -37,15 +29,15 @@
 }
 
 .dashboard-container h2 {
-  color: #5500b5;
-  font-family: 'Press Start 2P', system-ui;
-  font-size: 1.6rem;
+  color: var(--mork-acid);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
   margin-bottom: 25px;
 }
 
 .erro {
-  color: #d63333;
-  font-weight: bold;
+  color: var(--mork-wound);
+  font-weight: 700;
 }
 
 .kpi-row {
@@ -57,26 +49,28 @@
 }
 
 .kpi-card {
-  background-color: #dbbbff;
-  border: 3px solid #5500b5;
-  border-radius: 15px;
+  background: var(--mork-surface);
+  border: 1px solid var(--mork-border);
   padding: 20px 30px;
   min-width: 200px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
 }
 
 .kpi-value {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #5500b5;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--mork-acid);
 }
 
 .kpi-label {
   margin-top: 8px;
-  color: #1d1d1b;
-  font-weight: bold;
+  color: var(--mork-ash);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
 }
 
 .charts-grid {
@@ -86,16 +80,16 @@
 }
 
 .chart-card {
-  background-color: #f8f8f8;
-  border: 2px solid #5500b5;
-  border-radius: 12px;
+  background: var(--mork-surface);
+  border: 1px solid var(--mork-border);
   padding: 20px;
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
 
 .chart-card h3 {
-  color: #5500b5;
+  color: var(--mork-bone);
+  font-family: var(--font-body);
+  font-weight: 700;
   margin: 0 0 15px;
   text-align: center;
 }
@@ -119,11 +113,7 @@
 
 .chart-header-row select {
   padding: 8px 12px;
-  border-radius: 8px;
-  border: 2px solid #5500b5;
-  font-weight: bold;
-  color: #5500b5;
-  background-color: #fff;
+  font-weight: 700;
 }
 
 footer, app-footer-generic {

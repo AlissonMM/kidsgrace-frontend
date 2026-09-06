@@ -1,7 +1,8 @@
 .transition-screen {
     position: fixed;
     z-index: 9999;
-    background: linear-gradient(to right, #5500b5, #dbbbff);
+    inset: 0;
+    background: var(--mork-void);
     width: 100%;
     height: 100%;
     display: flex;
@@ -10,62 +11,22 @@
     animation: fadeOut 1s ease-in-out forwards;
     animation-delay: 1.5s;
   }
-  
-  .logo-container {
-    position: relative;
+
+  .mark-container {
     animation: zoomIn 1s ease;
   }
-  
-  .logo {
-    width: 250px;
-    z-index: 2;
-    position: relative;
+
+  .mark {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 8vw, 64px);
+    letter-spacing: .06em;
+    color: var(--mork-bone);
+    text-shadow: 0 0 24px rgba(255,232,0,.35);
   }
-  
-  .lightning {
-    position: absolute;
-    width: 120px;
-    height: 4px;
-    background: #fff;
-    box-shadow: 0 0 10px #fff, 0 0 20px #dbbbff;
-    animation: flicker 0.8s infinite;
-    z-index: 1;
-    opacity: 0.7;
-  }
-  
-  .lightning-1 {
-    top: -20px;
-    left: -60px;
-    transform: rotate(30deg);
-    animation-delay: 0s;
-  }
-  
-  .lightning-2 {
-    top: 0;
-    right: -80px;
-    transform: rotate(-45deg);
-    animation-delay: 0.2s;
-  }
-  
-  .lightning-3 {
-    bottom: -25px;
-    left: 30px;
-    transform: rotate(15deg);
-    animation-delay: 0.4s;
-  }
-  
-  @keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-      opacity: 0.7;
-    }
-    20%, 24%, 55% {
-      opacity: 1;
-    }
-  }
-  
+
   @keyframes zoomIn {
     0% {
-      transform: scale(0.6);
+      transform: scale(0.85);
       opacity: 0;
     }
     100% {
@@ -73,12 +34,10 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes fadeOut {
     to {
       opacity: 0;
       visibility: hidden;
     }
   }
-  
-  

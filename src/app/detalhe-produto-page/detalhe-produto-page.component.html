@@ -4,12 +4,12 @@
 
 <div *ngIf="produto" class="produto-detalhes-container my-5">
   <div class="produto-detalhes-card d-flex flex-column flex-lg-row align-items-center">
-    <img [src]="produto.imageUrl" class="produto-imagem" alt="Imagem do produto" />
-    
+    <app-product-cover class="produto-imagem" [name]="produto.name" [category]="produto.type"></app-product-cover>
+
     <div class="produto-info ms-lg-4 mt-4 mt-lg-0">
+      <div class="eyebrow">{{ produto.type }}</div>
       <h2 class="produto-nome">{{ produto.name }}</h2>
       <p><strong>Marca:</strong> {{ produto.brand }}</p>
-      <p><strong>Categoria:</strong> {{ produto.type }}</p>
       <p><strong>Descrição:</strong> <br /> {{ produto.description }}</p>
 
       <div *ngIf="atributosDoProduto.length > 0" class="produto-atributos">

@@ -1,66 +1,46 @@
 .team-header {
   width: 100%;
-  background: linear-gradient(to right, #5500b5, #dbbbff);
-  color: #ffffff;
+  color: var(--mork-bone);
   text-align: center;
   padding: 40px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.project-name {
-  font-weight: bold;
-  font-family: 'Press Start 2P', system-ui;
-  cursor: pointer;
-  font-size: 2rem;
-  margin: 0;
-  transition: transform 0.2s ease-in-out;
-}
-
-.project-name:hover {
-  transform: scale(1.05);
 }
 
 .team-container {
   width: 90%;
   max-width: 1200px;
   padding: 40px 20px;
-  background-color: #f8eaff;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: var(--mork-surface);
+  border: 1px solid var(--mork-border);
   text-align: center;
-  border: 2px solid #5500b5;
   margin: 40px auto;
 }
 
 .team-container h2 {
-  color: #5500b5;
-  margin-bottom: 30px;
-  text-shadow: 1px 1px 2px #6e00d6;
-  font-weight: bold;
-  font-family: 'Press Start 2P', system-ui;
+  font-family: var(--font-display);
   font-size: 2rem;
+  letter-spacing: .01em;
+  color: var(--mork-acid);
+  margin-bottom: 30px;
 }
 
 .team-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 24px;
 }
 
 .team-card {
   width: 220px;
-  background: #ffffff;
-  border: 2px solid #5500b5;
-  border-radius: 20px;
+  background: var(--mork-void);
+  border: 1px solid var(--mork-border);
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  transition: border-color .15s, transform .15s;
 }
 
 .team-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  border-color: var(--mork-acid);
 }
 
 .team-img {
@@ -69,7 +49,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 15px;
-  border: 3px solid #5500b5;
+  border: 2px solid var(--mork-acid);
 }
 
 .team-info {
@@ -77,13 +57,13 @@
 }
 
 .team-nome {
-  font-weight: bold;
-  color: #5500b5;
-  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--mork-bone);
+  font-size: 1.05rem;
   margin-bottom: 5px;
 }
 
 .team-cargo {
-  color: #3c3c3c;
-  font-size: 0.95rem;
+  color: var(--mork-ash);
+  font-size: .9rem;
 }

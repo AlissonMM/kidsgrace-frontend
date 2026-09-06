@@ -3,17 +3,18 @@ import { CommonModule } from '@angular/common';
 import { CartService } from '../cart-page/cart.service';
 import { Router } from '@angular/router';
 import { Product, ProductService } from '../services/product.service';
+import { CardReutComponent } from '../card-reut/card-reut.component';
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardReutComponent],
   templateUrl: './catalogo.component.html',
   styleUrls: ['./catalogo.component.scss']
 })
 export class CatalogoComponent implements OnInit {
   animatingItem: any = null;
-  produtos: (Product & { quantidade: number; parcelamento: string })[] = [];
+  produtos: (Product & { quantity: number; parcelamento: string })[] = [];
 
   constructor(
     private cartService: CartService,
@@ -29,7 +30,7 @@ export class CatalogoComponent implements OnInit {
         .filter(p => p.isVisibleInCatalog)
         .map(p => ({
           ...p,
-          quantidade: 1,
+          quantity: 1,
           parcelamento: `Até 10x de R$ ${(Number(p.price) / 10).toFixed(2)} sem juros!`
         }));
     });

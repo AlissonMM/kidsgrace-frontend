@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
+import { ProductCoverComponent } from '../product-cover/product-cover.component';
 @Component({
   selector: 'app-card-reut',
-  imports: [CommonModule],
+  imports: [CommonModule, ProductCoverComponent],
   templateUrl: './card-reut.component.html',
   styleUrl: './card-reut.component.scss'
 })

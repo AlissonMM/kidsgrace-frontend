@@ -1,3 +1,212 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* ==========================================================================
+   Mörk Store Design System — tokens + reset global
+   Guia de referência: paleta e tipografia de cartaz-punk OSR.
+   Duas intensidades: "calma" (padrão, em toda a loja) e ".mork-intense"
+   (ligada via body.mork-intense pelas páginas de vitrine: home, catálogo,
+   detalhe do produto) que soma grão de textura + o acento magenta.
+   ========================================================================== */
+:root {
+  /* fundo */
+  --mork-void: #0a0a0a;
+  --mork-surface: #151313;
+  --mork-surface-2: #1d1a1a;
+  --mork-border: #322d2d;
+  --mork-border-strong: #4a4444;
+
+  /* texto */
+  --mork-bone: #f2eee4;
+  --mork-ash: #9a948c;
+
+  /* acentos */
+  --mork-acid: #ffe800;
+  --mork-acid-dim: #cabf1f;
+  --mork-toxic: #ff3fb4;
+  --mork-wound: #ff4d6d;
+  --mork-blood: #b4122b;
+
+  /* tipografia */
+  --font-display: 'Bebas Neue', 'Oswald', Impact, sans-serif;
+  --font-body: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-flavor: 'IM Fell English', 'IM Fell English SC', Georgia, serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+
+  /* espaçamento — base 8px */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--mork-void);
+  color: var(--mork-bone);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  position: relative;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--mork-acid);
+  color: var(--mork-void);
+}
+
+a {
+  color: var(--mork-acid);
+}
+a:hover {
+  color: var(--mork-acid-dim);
+}
+
+/* Grão de textura + acento magenta só nas páginas de vitrine */
+body.mork-intense::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: .05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body:not(.mork-intense) .mork-toxic-only {
+  display: none;
+}
+
+/* ---------- reset de cantos: cantos vivos, sem pílulas ---------- */
+.btn, .form-control, .form-select, .card, .badge, .modal-content, .dropdown-menu, input, textarea, select, button {
+  border-radius: 0 !important;
+}
+/* exceções deliberadas: elementos circulares (avatar, contador do carrinho) */
+.profile-img, .cart-badge, .rounded-circle {
+  border-radius: 50% !important;
+}
+
+/* ---------- overrides de Bootstrap para a paleta Mörk ---------- */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.btn-primary {
+  background: var(--mork-acid);
+  border-color: var(--mork-acid);
+  color: var(--mork-void);
+}
+.btn-primary:hover, .btn-primary:focus {
+  background: var(--mork-acid-dim);
+  border-color: var(--mork-acid-dim);
+  color: var(--mork-void);
+}
+.btn-outline-primary {
+  background: transparent;
+  border: 2px solid var(--mork-acid);
+  color: var(--mork-acid);
+}
+.btn-outline-primary:hover {
+  background: var(--mork-acid);
+  color: var(--mork-void);
+}
+.btn-secondary, .btn-light {
+  background: transparent;
+  border: 2px solid var(--mork-border-strong);
+  color: var(--mork-bone);
+}
+.btn-secondary:hover, .btn-light:hover {
+  border-color: var(--mork-acid);
+  color: var(--mork-acid);
+  background: transparent;
+}
+.btn-danger {
+  background: var(--mork-blood);
+  border-color: var(--mork-blood);
+  color: var(--mork-bone);
+}
+
+.form-control, .form-select, input, textarea, select {
+  background: var(--mork-void) !important;
+  border: 2px solid var(--mork-border-strong) !important;
+  color: var(--mork-bone) !important;
+  font-family: var(--font-body);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--mork-acid) !important;
+  box-shadow: none !important;
+  color: var(--mork-bone) !important;
+}
+.form-control::placeholder {
+  color: var(--mork-ash);
+  opacity: .8;
+}
+label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--mork-ash);
+}
+
+.card {
+  background: var(--mork-surface);
+  border: 1px solid var(--mork-border);
+  color: var(--mork-bone);
+}
+
+table {
+  color: var(--mork-bone);
+}
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--mork-bone);
+  --bs-table-striped-bg: var(--mork-surface);
+  --bs-table-border-color: var(--mork-border);
+}
+thead {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--mork-ash);
+}
+
+.badge {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* ---------- wordmark reutilizado em quase toda página (.project-name) ---------- */
+.project-name {
+  font-family: var(--font-display) !important;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--mork-bone) !important;
+  text-shadow: none !important;
+}
+
+/* ---------- cabeçalhos "calmos" (páginas fora da vitrine) ---------- */
+.catalog-header, .edit-header, .cart-header, .checkout-header,
+.login-header, .register-header, .profile-header, .admin-header,
+.team-header, .pedido-header, .pedidos-header {
+  background: var(--mork-void) !important;
+  border-bottom: 2px solid var(--mork-border-strong);
+  box-shadow: none !important;
+}

@@ -1,36 +1,25 @@
-<div class = "titulo-container">
-    <h2>PRODUTOS EM DESTAQUE</h2>
+<section class="hero">
+  <div class="eyebrow">Livros de RPG · dados · zines · miniaturas</div>
+  <h1>MORK STORE</h1>
+  <div class="sub">Achados de Mesa</div>
+  <p class="flavor">Para quem já aceitou que a campanha vai terminar em morte.</p>
+</section>
+
+<div class="titulo-container">
+    <h2>Produtos em <span>Destaque</span></h2>
 </div>
 <div class="catalog-container">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3" *ngFor="let produto of produtos">
-          <div class="card">
-            <a (click)="goProduct(produto.id)">
-              <img [src]="produto.imageUrl" class="imageSize" alt="{{ produto.name }}">
-              <div class="card-body">
-                <h5 class="card-title text-truncate" style="width: 100%;">{{ produto.name }}</h5>
-                <p class="card-text">R$ {{ produto.price }}</p>
-                <p class="card-text">{{ produto.parcelamento }}</p>
-              </div>
-            </a>
-  
-            <div class="quantity-container">
-              <i class="bi bi-dash-circle btn-quantity decrease" (click)="diminuirQuantidade(produto)"></i>
-              <span class="quantity">{{ produto.quantity }}</span>
-              <i class="bi bi-plus-circle btn-quantity increase" (click)="aumentarQuantidade(produto)"></i>
-              <button class="btn-add-to-cart" (click)="adicionarItem(produto, $event)">
-                <i class="bi bi-cart"> Adicionar</i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="cards-grid">
+    <app-card-reut *ngFor="let produto of produtos"
+                   [produto]="produto"
+                   (diminuir)="diminuirQuantidade(produto)"
+                   (aumentar)="aumentarQuantidade(produto)"
+                   (adicionar)="adicionarItem(produto, $event)">
+    </app-card-reut>
   </div>
-  
-  <img *ngIf="animatingItem"
-       [src]="animatingItem.imagem"
-       class="animation-item"
-       [ngStyle]="{'top.px': animatingItem.top, 'left.px': animatingItem.left}" />
-  
+</div>
+
+<img *ngIf="animatingItem"
+     [src]="animatingItem.imagem"
+     class="animation-item"
+     [ngStyle]="{'top.px': animatingItem.top, 'left.px': animatingItem.left}" />

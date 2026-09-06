@@ -1,94 +1,92 @@
+:host {
+    display: block;
+    background-color: var(--mork-void);
+    min-height: 100vh;
+}
+
 .profile-header {
     width: 100%;
-    background: linear-gradient(to right, #5500b5, #dbbbff);
-    color: #ffffff;
+    color: var(--mork-bone);
     text-align: center;
-    padding: 50px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 40px 0;
   }
-  
+
   .header-content {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
-  .project-name {
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: 'Press Start 2P', system-ui;
-    margin: 0;
-    cursor: pointer;
-  }
-  
+
   .profile-container {
     width: 80%;
     max-width: 800px;
     margin: 40px auto;
-    background-color: #dbbbff;
+    background: var(--mork-surface);
+    border: 1px solid var(--mork-border);
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    border: 3px solid #5500b5;
     text-align: center;
   }
-  
+
   .profile-container h2 {
-    color: #5500b5;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: .01em;
+    color: var(--mork-acid);
     margin-bottom: 25px;
-    text-shadow: 1px 1px 2px #6500d6;
   }
-  
+
   .profile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
   }
-  
+
   .profile-img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 4px solid #5500b5;
+    border: 2px solid var(--mork-acid);
     object-fit: cover;
   }
-  
+
   .profile-info {
     font-size: 1rem;
-    color: #1d1d1b;
-    font-weight: bold;
+    color: var(--mork-bone);
   }
-  
+
   .profile-info p {
     margin: 5px 0;
   }
-  
+
   .profile-actions {
     margin-top: 15px;
   }
-  
+
   .btn-edit {
-    background-color: #5500b5;
-    color: #ffffff;
-    border: none;
+    background: transparent;
+    color: var(--mork-acid);
+    border: 2px solid var(--mork-acid);
     padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 8px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: .82rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
+    transition: .15s;
   }
-  
+
   .btn-edit:hover {
-    background-color: #6500d6;
+    background: var(--mork-acid);
+    color: var(--mork-void);
   }
-  
+
   @media (max-width: 600px) {
     .profile-container {
       padding: 20px;
     }
-  
+
     .profile-img {
       width: 120px;
       height: 120px;
@@ -99,53 +97,54 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-color: #6500d6;;
+    background: var(--mork-surface-2);
+    border: 2px solid var(--mork-border-strong);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     overflow: hidden;
   }
-  
+
   .profile-placeholder {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: #dbbbff;
+    background: var(--mork-surface-2);
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   .edit-icon-only {
     font-size: 2rem;
-    color: #5500b5;
+    color: var(--mork-acid);
   }
-  
+
   .avatar-selection {
     margin-top: 20px;
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px 0;
   }
-  
+
   .avatar-selection img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     margin: 0 10px;
     object-fit: cover;
     cursor: pointer;
-    transition: border 0.3s ease, transform 0.3s ease;
+    transition: border-color .15s, transform .15s;
   }
-  
+
   .avatar-selection img:hover {
     transform: scale(1.1);
   }
-  
+
   .avatar-selection img.selected {
-    border-color: #5500b5;
+    border-color: var(--mork-acid);
   }
   .profile-img-bg {
     background-size: cover;
@@ -160,6 +159,5 @@
   }
   footer, app-footer-generic{
     width: 100%;
-    padding-top: 100px;
+    padding-top: 60px;
   }
-  
