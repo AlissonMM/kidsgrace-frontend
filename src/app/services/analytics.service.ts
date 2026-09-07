@@ -35,6 +35,13 @@ export class AnalyticsService {
     return this.http.get<EntityAnalytics>(`${this.apiUrl}/entities`, { params: this.rangeParams(from, to) });
   }
 
+  // Contagem BRUTA (não percentual) de uma entidade — /analytics/entities
+  // devolve proporção (soma ~100), útil para o texto "63,6% dos eventos são
+  // de usuário", mas não para um gráfico que deve mostrar "quantos eventos".
+  getEntityCount(entity: AnalyticsEntity, from?: string, to?: string): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/entities/${entity}`, { params: this.rangeParams(from, to) });
+  }
+
   getLoginStats(): Observable<LoginStats> {
     return this.http.get<LoginStats>(`${this.apiUrl}/login-stats`);
   }

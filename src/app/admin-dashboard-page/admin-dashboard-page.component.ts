@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartConfiguration, ChartData } from 'chart.js';
+import { ChartConfiguration, ChartData, TooltipItem } from 'chart.js';
 import { AnalyticsService } from '../services/analytics.service';
 import { ProductService } from '../services/product.service';
 import { FooterGenericComponent } from '../footer-generic/footer-generic.component';
@@ -31,7 +31,19 @@ export class AdminDashboardPageComponent implements OnInit {
   entityChartData: ChartData<'pie'> = { labels: [], datasets: [{ data: [] }] };
   entityChartOptions: ChartConfiguration<'pie'>['options'] = {
     responsive: true,
-    plugins: { legend: { position: 'bottom' } }
+    plugins: {
+      legend: { position: 'bottom' },
+      tooltip: {
+        callbacks: {
+          // O valor já é percentual (vem de /analytics/entities) — deixa
+          // isso explícito no tooltip pra não parecer contagem de eventos.
+          label: (item: TooltipItem<'pie'>) => {
+            const percentual = item.parsed as number;
+            return `${item.label}: ${percentual.toFixed(1)}%`;
+          }
+        }
+      }
+    }
   };
 
   revenueChartData: ChartData<'bar'> = {
@@ -99,7 +111,7 @@ export class AdminDashboardPageComponent implements OnInit {
           labels: entries.map(([entity]) => this.traduzirEntidade(entity)),
           datasets: [{
             data: entries.map(([, percentual]) => percentual),
-            backgroundColor: ['#ffe800', '#ff4d6d', '#d9a400']
+            backgroundColor: ['#ffe800', '#ff3fb4', '#b4122b']
           }]
         };
       },
