@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef, Input, ElementRef, Renderer2 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, ChangeDetectorRef, Input, ElementRef, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { CartService } from '../cart-page/cart.service';
 import { Router } from '@angular/router';
 import { Product, ProductService } from '../services/product.service';
@@ -20,6 +20,7 @@ export class CatalogoComponent implements OnInit {
     private cartService: CartService,
     private productService: ProductService,
     private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
   ngOnInit(): void {
@@ -37,35 +38,41 @@ export class CatalogoComponent implements OnInit {
   }
 
   isFeatured(id: number): boolean {
+    if (!isPlatformBrowser(this.platformId)) return false;
     const stored = localStorage.getItem('featuredProducts');
     const featured: number[] = stored ? JSON.parse(stored) : [];
     return featured.includes(id);
   }
-  
+
 
   goProduct(productId: any){
     this.router.navigate(["/products", productId])
   }
 
   adicionarItem(produto: any, event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const rect = target.getBoundingClientRect();
+    // Só existe interação de clique/DOM (window/document) no navegador; no SSR
+    // este método nunca deveria ser chamado, mas a checagem evita quebrar a
+    // renderização caso isso mude no futuro.
+    if (isPlatformBrowser(this.platformId)) {
+      const target = event.target as HTMLElement;
+      const rect = target.getBoundingClientRect();
 
-    this.animatingItem = {
-      imagem: produto.imageUrl,
-      top: rect.top + window.scrollY,
-      left: rect.left + window.scrollX
-    };
+      this.animatingItem = {
+        imagem: produto.imageUrl,
+        top: rect.top + window.scrollY,
+        left: rect.left + window.scrollX
+      };
 
-    setTimeout(() => {
-      const cartIcon = document.querySelector(".bi-cart") as HTMLElement;
-      if (!cartIcon) return;
+      setTimeout(() => {
+        const cartIcon = document.querySelector(".bi-cart") as HTMLElement;
+        if (!cartIcon) return;
 
-      const cartRect = cartIcon.getBoundingClientRect();
+        const cartRect = cartIcon.getBoundingClientRect();
 
-      this.animatingItem.top = cartRect.top + window.scrollY + 10;
-      this.animatingItem.left = cartRect.left + window.scrollX + 10;
-    }, 50);
+        this.animatingItem.top = cartRect.top + window.scrollY + 10;
+        this.animatingItem.left = cartRect.left + window.scrollX + 10;
+      }, 50);
+    }
 
     setTimeout(() => {
       this.animatingItem = null;

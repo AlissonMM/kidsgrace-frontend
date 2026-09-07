@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, Input, ElementRef, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService, Product } from '../services/product.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FooterGenericComponent } from '../footer-generic/footer-generic.component';
 import  { HeaderComponent } from '../header/header.component'
 import { CartService } from '../cart-page/cart.service';
@@ -24,18 +24,26 @@ export class DetalheProdutoPageComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private cdr: ChangeDetectorRef,
     private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
   ngOnInit() {
     // Página de vitrine: liga o visual "intenso" do Mörk Store Design System.
-    document.body.classList.add('mork-intense');
+    // `document` global não existe durante o SSR (Node) - esta rota é acessada
+    // direto por URL (/products/:id), então sem a checagem ela derrubava a
+    // renderização inteira quando visitada como primeira página (F5, link direto).
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.add('mork-intense');
+    }
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.produto = this.productService.getProductById(id);
   }
 
   ngOnDestroy() {
-    document.body.classList.remove('mork-intense');
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.remove('mork-intense');
+    }
   }
 
   // Object.entries não pode ser chamado direto do template — expõe os
@@ -46,53 +54,55 @@ export class DetalheProdutoPageComponent implements OnInit, OnDestroy {
   }
 
   adicionarItem(produto: any, event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const rect = target.getBoundingClientRect();
+    if (isPlatformBrowser(this.platformId)) {
+      const target = event.target as HTMLElement;
+      const rect = target.getBoundingClientRect();
 
-    this.animatingItem = {
-      imagem: produto.imageUrl,
-      top: rect.top + window.scrollY,
-      left: rect.left + window.scrollX
-    };
+      this.animatingItem = {
+        imagem: produto.imageUrl,
+        top: rect.top + window.scrollY,
+        left: rect.left + window.scrollX
+      };
 
-    // Função de movimento da lupa
-    const mouseMove = (event: MouseEvent) => {
-      const lupa = document.querySelector('.produto-imagem-lupa') as HTMLElement;
-      const img = document.querySelector('.produto-imagem') as HTMLElement;
-      
-      if (lupa && img) {
-        // Calculando as posições de acordo com o mouse
-        const rect = img.getBoundingClientRect();
-        const mouseX = event.clientX - rect.left;
-        const mouseY = event.clientY - rect.top;
+      // Função de movimento da lupa
+      const mouseMove = (event: MouseEvent) => {
+        const lupa = document.querySelector('.produto-imagem-lupa') as HTMLElement;
+        const img = document.querySelector('.produto-imagem') as HTMLElement;
 
-        // Calculando o centro da lupa e posicionando-a
-        const lupaX = mouseX - lupa.offsetWidth / 2;
-        const lupaY = mouseY - lupa.offsetHeight / 2;
+        if (lupa && img) {
+          // Calculando as posições de acordo com o mouse
+          const rect = img.getBoundingClientRect();
+          const mouseX = event.clientX - rect.left;
+          const mouseY = event.clientY - rect.top;
 
-        // Limitar a posição da lupa dentro dos limites da imagem
-        const maxX = img.offsetWidth - lupa.offsetWidth;
-        const maxY = img.offsetHeight - lupa.offsetHeight;
+          // Calculando o centro da lupa e posicionando-a
+          const lupaX = mouseX - lupa.offsetWidth / 2;
+          const lupaY = mouseY - lupa.offsetHeight / 2;
 
-        lupa.style.left = `${Math.min(Math.max(0, lupaX), maxX)}px`;
-        lupa.style.top = `${Math.min(Math.max(0, lupaY), maxY)}px`;
+          // Limitar a posição da lupa dentro dos limites da imagem
+          const maxX = img.offsetWidth - lupa.offsetWidth;
+          const maxY = img.offsetHeight - lupa.offsetHeight;
 
-        // Ajustar o background da lupa para mostrar a parte ampliada
-        lupa.style.backgroundPosition = `-${lupaX}px -${lupaY}px`;
-      }
-    };
+          lupa.style.left = `${Math.min(Math.max(0, lupaX), maxX)}px`;
+          lupa.style.top = `${Math.min(Math.max(0, lupaY), maxY)}px`;
 
-    document.addEventListener('mousemove', mouseMove);
+          // Ajustar o background da lupa para mostrar a parte ampliada
+          lupa.style.backgroundPosition = `-${lupaX}px -${lupaY}px`;
+        }
+      };
 
-    setTimeout(() => {
-      const cartIcon = document.querySelector(".bi-cart") as HTMLElement;
-      if (!cartIcon) return;
+      document.addEventListener('mousemove', mouseMove);
 
-      const cartRect = cartIcon.getBoundingClientRect();
+      setTimeout(() => {
+        const cartIcon = document.querySelector(".bi-cart") as HTMLElement;
+        if (!cartIcon) return;
 
-      this.animatingItem.top = cartRect.top + window.scrollY + 10;
-      this.animatingItem.left = cartRect.left + window.scrollX + 10;
-    }, 50);
+        const cartRect = cartIcon.getBoundingClientRect();
+
+        this.animatingItem.top = cartRect.top + window.scrollY + 10;
+        this.animatingItem.left = cartRect.left + window.scrollX + 10;
+      }, 50);
+    }
 
     setTimeout(() => {
       this.animatingItem = null;

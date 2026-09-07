@@ -1,19 +1,14 @@
 import { provideRouter } from '@angular/router';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
-import { CartPageComponent } from './cart-page/cart-page.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { TeamInfoComponent } from './team-info/team-info.component';
+import { routes } from './app.routes';
+
+// Antes esta lista era uma cópia (incompleta e desatualizada) das rotas de
+// app.routes.ts. Como app.config.server.ts só herda daqui (main.server.ts
+// nunca vê a lista completa que main.ts monta na mão pro navegador), o SSR
+// não conhecia rotas como /catalogo ou /products/:id e respondia 404 para
+// qualquer acesso direto a elas. Usar a mesma `routes` em ambos os bootstraps
+// (cliente e servidor) elimina essa divergência.
 export const appConfig = {
   providers: [
-    provideRouter([
-      {path:'', component: HomeComponent},
-      {path: 'login', component: LoginPageComponent },
-      {path: 'register', component: RegisterPageComponent},
-      {path:'cart', component: CartPageComponent},
-      {path:'user', component:ProfilePageComponent},
-      {path:'team', component:TeamInfoComponent}
-    ])
+    provideRouter(routes)
   ]
 };

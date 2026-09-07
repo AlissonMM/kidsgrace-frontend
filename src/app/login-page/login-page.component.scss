@@ -33,6 +33,15 @@
   margin-bottom: 60px;
 }
 
+.session-expired-warning {
+  color: var(--mork-wound);
+  border: 1px solid var(--mork-blood);
+  background: rgba(180, 18, 43, 0.12);
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
 .login-container h2 {
   font-family: var(--font-display);
   font-size: 2rem;

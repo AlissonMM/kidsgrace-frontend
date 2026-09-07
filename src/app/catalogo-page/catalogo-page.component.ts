@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService, Product } from '../services/product.service';
@@ -40,13 +40,19 @@ export class CatalogoPageComponent implements OnInit, AfterViewInit, OnDestroy {
     private cartService: CartService,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private buscaService: BuscaService
+    private buscaService: BuscaService,
+    @Inject(PLATFORM_ID) private platformId: Object
 
   ) {}
 
   ngOnInit() {
     // Página de vitrine: liga o visual "intenso" do Mörk Store Design System.
-    document.body.classList.add('mork-intense');
+    // `document` global não existe durante o SSR (Node) - esta é uma rota
+    // acessível direto por URL (/catalogo), então sem a checagem ela derrubava
+    // a renderização inteira quando visitada como primeira página (F5, link direto).
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.add('mork-intense');
+    }
 
     this.productService.loadProductsFromServer();
 
@@ -74,6 +80,8 @@ export class CatalogoPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     setTimeout(() => {
       const cartIcon = document.querySelector(".bi-cart") as HTMLElement;
       if (cartIcon) {
@@ -84,7 +92,9 @@ export class CatalogoPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    document.body.classList.remove('mork-intense');
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.remove('mork-intense');
+    }
     this.buscaService.atualizarTermoBusca('');
     this.filtroTexto = '';
     this.filtroCategoria = '';
@@ -124,27 +134,29 @@ export class CatalogoPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   adicionarItem(produto: any, event: MouseEvent) {
-    const target = event.currentTarget as HTMLElement;
-    const rect = target.getBoundingClientRect();
-  
-    this.animatingItem = {
-      imagem: produto.imageUrl,
-      top: rect.top + window.scrollY,
-      left: rect.left + window.scrollX
-    };
-  
-    setTimeout(() => {
-      const cartIcon = document.querySelector(".bi-cart") as HTMLElement;
-      if (!cartIcon) {
-        console.error("Erro: Ícone do carrinho não encontrado para animação.");
-        return;
-      }
-  
-      const cartRect = cartIcon.getBoundingClientRect();
-      this.animatingItem.top = cartRect.top + window.scrollY + 10;
-      this.animatingItem.left = cartRect.left + window.scrollX + 10;
-    }, 50);
-  
+    if (isPlatformBrowser(this.platformId)) {
+      const target = event.currentTarget as HTMLElement;
+      const rect = target.getBoundingClientRect();
+
+      this.animatingItem = {
+        imagem: produto.imageUrl,
+        top: rect.top + window.scrollY,
+        left: rect.left + window.scrollX
+      };
+
+      setTimeout(() => {
+        const cartIcon = document.querySelector(".bi-cart") as HTMLElement;
+        if (!cartIcon) {
+          console.error("Erro: Ícone do carrinho não encontrado para animação.");
+          return;
+        }
+
+        const cartRect = cartIcon.getBoundingClientRect();
+        this.animatingItem.top = cartRect.top + window.scrollY + 10;
+        this.animatingItem.left = cartRect.left + window.scrollX + 10;
+      }, 50);
+    }
+
     setTimeout(() => {
       this.animatingItem = null;
       const produtoFormatado = this.formatarProdutoParaCarrinho(produto);

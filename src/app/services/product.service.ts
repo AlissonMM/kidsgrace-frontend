@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { AuthService } from '../auth/auth.service';
 
 export interface Product {
   id?: number;
@@ -32,7 +33,10 @@ export class ProductService {
   private currentId = 1;
 
   generateHeaders(){
-    const token = localStorage.getItem('authToken');
+    // Delega a leitura do token ao AuthService, que já lida com o SSR
+    // (localStorage não existe no Node) - antes esse acesso direto derrubava
+    // qualquer renderização de página de admin no servidor.
+    const token = this.authService.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -58,7 +62,7 @@ export class ProductService {
       attributes: product.attributes ?? {},
     };
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   addProduct(product: Product, imagem: File): Observable<any> {
     const formData = new FormData();
