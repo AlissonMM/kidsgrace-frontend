@@ -16,12 +16,16 @@
     animation: zoomIn 1s ease;
   }
 
-  .mark {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 8vw, 64px);
-    letter-spacing: .06em;
-    color: var(--mork-bone);
-    text-shadow: 0 0 24px rgba(255,232,0,.35);
+  .mark-image {
+    max-width: min(60vw, 320px);
+    max-height: 60vh;
+    width: auto;
+    height: auto;
+    // A arte é traço preto sobre fundo transparente (fundo branco original
+    // já removido) — invertido pra ossos/branco, já que sobre o fundo quase
+    // preto da tela de transição o traço preto original ficava invisível.
+    // O invert() não mexe no canal alpha, só nas cores.
+    filter: invert(1) drop-shadow(0 0 18px rgba(255,232,0,.25));
   }
 
   @keyframes zoomIn {
