@@ -110,8 +110,4 @@ export class HeaderComponent implements OnInit {
     event.preventDefault();
     this.router.navigate(['pedidos']);
   }
-  irParaEquipe(event: Event){
-    event.preventDefault();
-    this.router.navigate(['team']);
-  }
 }

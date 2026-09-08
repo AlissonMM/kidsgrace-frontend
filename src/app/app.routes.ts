@@ -12,7 +12,6 @@ import { AdministratorPageComponent } from './administrator-page/administrator-p
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { CatalogoPageComponent } from './catalogo-page/catalogo-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { TeamInfoComponent } from './team-info/team-info.component';
 import { DetalheProdutoPageComponent } from './detalhe-produto-page/detalhe-produto-page.component'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
@@ -38,7 +37,6 @@ export const routes: Routes = [
   { path: 'edit/:id', component: EditPageComponent },
   { path: 'catalogo', component: CatalogoPageComponent },
   { path: 'user', component:ProfilePageComponent },
-  { path:'team', component: TeamInfoComponent },
   { path: 'products/:id', component: DetalheProdutoPageComponent },
 ];
 
