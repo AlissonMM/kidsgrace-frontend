@@ -1,5 +1,5 @@
 {
-  "name": "kids-grace",
+  "name": "mork-store",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:kids-grace": "node dist/kids-grace/server/server.mjs"
+    "serve:ssr:mork-store": "node dist/mork-store/server/server.mjs"
   },
   "private": true,
   "dependencies": {

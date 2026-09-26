@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     gap: 1px;
-    background-color: #ffff;
+    background-color: var(--mork-void);
   }
   html, body {
     height: 100%;
     margin: 0;
     padding: 0;
   }
-  
+
   .app-container {
     display: flex;
     flex-direction: column;

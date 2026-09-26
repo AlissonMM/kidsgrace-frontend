@@ -4,136 +4,134 @@
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    background-color: #f8f8f8;
+    background-color: var(--mork-void);
   }
-  
-  .login-header,
+
   .edit-header {
     width: 100%;
-    background: linear-gradient(to right, #5500b5, #dbbbff);
-    color: #ffffff;
+    color: var(--mork-bone);
     text-align: center;
-    padding: 50px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 40px 0;
   }
-  
+
   .header-content {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
   }
-  
-  .project-name {
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: 'Press Start 2P', system-ui;
-    margin: 0;
-  }
-  
-  .login-container,
+
   .edit-container {
     width: 80%;
     max-width: 600px;
     padding: 40px;
-    background-color: #dbbbff;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background: var(--mork-surface);
+    border: 1px solid var(--mork-border);
     text-align: left;
-    border: 3px solid #5500b5;
     margin: 30px auto;
   }
-  
-  .edit-container {
-    margin-top: 30px;
-  }
-  
-  .login-container h2,
+
   .edit-container h2,
   #form-title {
-    color: #5500b5;
+    color: var(--mork-acid);
     margin-bottom: 25px;
     text-align: center;
-    text-shadow: 1px 1px 2px #6500d6;
-    font-family: 'Press Start 2P', system-ui;
+    font-family: var(--font-display);
     font-size: 1.8rem;
+    letter-spacing: .01em;
   }
-  
-  .input-group,
+
   #character-form {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     text-align: left;
   }
-  
-  .input-group label,
+
   .edit-container label,
   #character-form label {
-    color: #5500b5;
-    font-weight: bold;
+    color: var(--mork-ash);
     margin-bottom: 5px;
     display: block;
   }
-  
-  .input-group input,
+
   .edit-container input,
   .edit-container select,
   #character-form input,
   #character-form select {
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
     font-size: 1rem;
-    width: calc(100% - 22px);
-    background-color: #f8f8f8;
+    width: 100%;
     margin-bottom: 15px;
   }
-  
+
   .edit-container input[type="file"],
   #character-form input[type="file"] {
     padding: 5px;
   }
-  
-  .login-container button,
+
   .edit-container button,
   .btn-primary,
   .btn-secondary {
-    background-color: #5500b5;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
+    background: transparent;
+    color: var(--mork-acid);
+    border: 2px solid var(--mork-acid);
+    padding: 11px 20px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: .82rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
+    transition: .15s;
     margin-top: 10px;
-    width: 96%;
+    width: 100%;
   }
-  
-  .login-container button:hover,
+
   .edit-container button:hover,
   .btn-primary:hover,
   .btn-secondary:hover {
-    background-color: #6500d6;
+    background: var(--mork-acid);
+    color: var(--mork-void);
   }
-  
+
   .btn-secondary {
-    background-color: #888;
+    color: var(--mork-ash);
+    border-color: var(--mork-border-strong);
   }
-  
+
+  .btn-secondary:hover {
+    background: transparent;
+    border-color: var(--mork-bone);
+    color: var(--mork-bone);
+  }
+
+  /* editor de atributos livres (chave/valor) */
+  .attribute-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  .attribute-row input {
+    margin-bottom: 0 !important;
+  }
+  .attribute-row .btn-secondary {
+    width: auto;
+    white-space: nowrap;
+  }
+
   .register-link {
     margin-top: 25px;
-    color: #1d1d1b;
+    color: var(--mork-ash);
   }
-  
+
   .register-link a {
-    color: #5500b5;
+    color: var(--mork-acid);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
   }
-  
+
   .register-link a:hover {
     text-decoration: underline;
   }
@@ -147,4 +145,3 @@
     width: 100%;
     padding-top: 25px;
   }
-  

@@ -1,76 +1,71 @@
 :host {
   margin-top: 10px;
+  display: block;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
-  max-width: 300px;
-  height: 550px;
+  width: 280px;
+  max-width: 280px;
   box-sizing: border-box;
-  background: #dbbbff;
-  border-radius: 15px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+  background: var(--mork-surface);
+  border: 1px solid var(--mork-border);
+  padding: 0;
+  text-align: left;
+  transition: border-color .15s, transform .15s;
   position: relative;
-  border: 3px solid #000;
   margin-bottom: 15px;
   cursor: pointer;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
+  border-color: var(--mork-acid);
 }
 
-.card img {
-  max-width: 100%;
-  max-height: 310px;
-  object-fit: cover;
-  border-radius: 8px;
+.card-cover {
+  display: block;
+  width: 100%;
+  height: 190px;
 }
 
 .card-body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 5px;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 16px;
 }
 
 .card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffffff;
-  text-shadow: 1px 1px 2px #5500b5;
-}
-
-.card-text {
-  color: #5500b5;
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 1rem;
-  font-weight: bold;
+  color: var(--mork-bone);
 }
 
-.card-text:nth-of-type(1) {
-  font-size: 1.5rem;
-  color: #6500d6;
+.card-price {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--mork-acid);
+  letter-spacing: .01em;
 }
 
-.card-text:nth-of-type(2) {
-  font-size: 0.9rem;
-  color: #1d1d1b;
+.card-installment {
+  font-family: var(--font-body);
+  font-size: .8rem;
+  color: var(--mork-ash);
 }
 
 .quantity-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
-  margin-top: auto;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .quantity-controls {
@@ -82,48 +77,47 @@
 .btn-quantity {
   background: none;
   border: none;
-  font-size: 1.6rem;
-  color: #5500b5;
+  font-size: 1.4rem;
+  color: var(--mork-ash);
   cursor: pointer;
-  transition: 0.3s;
   padding: 0;
-  transition: all 0.3s ease;
+  transition: color .15s;
 }
 
 .btn-quantity:hover {
-  color: #6500d6;
-  transform: scale(1.2);
+  color: var(--mork-acid);
 }
 
 .quantity {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #1d1d1b;
-  min-width: 30px;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--mork-bone);
+  min-width: 24px;
   text-align: center;
 }
 
 .btn-add-to-cart {
-  background-color: #5500b5;
-  color: #ffffff;
-  border: none;
-  padding: 8px 15px;
-  font-size: 1rem;
+  width: 100%;
+  background: transparent;
+  color: var(--mork-acid);
+  border: 2px solid var(--mork-acid);
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 5px;
-  border-radius: 5px;
-  transition: 0.3s;
-  font-weight: bold;
-  margin-top: 5px;
+  justify-content: center;
+  gap: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background .15s, color .15s;
 }
 
 .btn-add-to-cart:hover {
-  background-color: #6500d6;
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: var(--mork-acid);
+  color: var(--mork-void);
 }
 
 .btn-add-to-cart i {

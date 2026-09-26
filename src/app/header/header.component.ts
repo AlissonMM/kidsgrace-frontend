@@ -85,6 +85,10 @@ export class HeaderComponent implements OnInit {
   irParaLogin() {
     this.router.navigate(['login']);
   }
+  irParaHome(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['home']);
+  }
 
   irParaCarrinhoCompra(event: Event) {
     event.preventDefault();
@@ -105,9 +109,5 @@ export class HeaderComponent implements OnInit {
   irParaMeusPedidos(event: Event){
     event.preventDefault();
     this.router.navigate(['pedidos']);
-  }
-  irParaEquipe(event: Event){
-    event.preventDefault();
-    this.router.navigate(['team']);
   }
 }

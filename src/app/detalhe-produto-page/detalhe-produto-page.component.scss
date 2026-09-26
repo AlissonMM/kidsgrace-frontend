@@ -1,11 +1,14 @@
+:host {
+    display: block;
+    background: var(--mork-void);
+}
+
 .produto-detalhes-container {
     width: 100%;
-    max-width: 1200px;
-    background-color: #dbbbff;
+    max-width: 1100px;
+    background: var(--mork-surface);
     padding: 40px;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    border: 3px solid #5500b5;
+    border: 1px solid var(--mork-border);
     margin: auto;
     margin-top: 30px;
     margin-bottom: 100px;
@@ -15,47 +18,82 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s;
+    align-items: flex-start;
 }
 
 @media (min-width: 992px) {
     .produto-detalhes-card {
         flex-direction: row;
-        align-items: flex-start;
     }
 }
 
 .produto-imagem {
-    max-width: 350px;
+    max-width: 340px;
     width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border: 2px solid #5500b5;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.produto-imagem:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    height: 340px;
+    display: block;
+    border: 1px solid var(--mork-border-strong);
 }
 
 .produto-info {
     flex: 1;
-    color: #1d1d1b;
+    color: var(--mork-bone);
+}
+
+.eyebrow {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--mork-toxic);
+    margin-bottom: 8px;
 }
 
 .produto-nome {
-    color: #5500b5;
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    letter-spacing: .01em;
+    color: var(--mork-bone);
     margin-bottom: 15px;
-    text-shadow: 1px 1px 2px #6500d6;
+}
+
+.produto-info p {
+    color: var(--mork-ash);
+}
+.produto-info p strong {
+    color: var(--mork-bone);
+}
+
+.produto-atributos {
+    margin: 18px 0;
+    padding: 14px 16px;
+    border-left: 3px solid var(--mork-toxic);
+    background: var(--mork-void);
+    color: var(--mork-ash);
+    font-size: .9rem;
+}
+.produto-atributos strong {
+    color: var(--mork-bone);
+}
+.produto-atributos ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+}
+.produto-atributos li {
+    margin-bottom: 4px;
+}
+.produto-atributos li strong {
+    color: var(--mork-toxic);
+    text-transform: capitalize;
 }
 
 .produto-preco {
-    color: #5500b5;
+    font-family: var(--font-display);
+    color: var(--mork-acid);
     margin: 15px 0;
-    font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
 }
 
 .animation-item {
@@ -68,42 +106,42 @@
 
 .btn-add-to-cart {
     margin-left: 20px;
-    background-color: #5500b5;
-    color: #ffffff;
-    border: none;
-    padding: 8px 15px;
-    font-size: 1rem;
+    background: transparent;
+    color: var(--mork-acid);
+    border: 2px solid var(--mork-acid);
+    padding: 11px 20px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: .82rem;
+    letter-spacing: .05em;
+    text-transform: uppercase;
     display: flex;
     align-items: center;
-    gap: 5px;
-    border-radius: 5px;
+    gap: 6px;
     cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
+    transition: .15s;
 }
 
 .btn-add-to-cart:hover {
-    background-color: #6500d6;
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: var(--mork-acid);
+    color: var(--mork-void);
 }
 
 .btn-quantity {
-    font-size: 1.5rem;
-    color: #5500b5;
+    font-size: 1.4rem;
+    color: var(--mork-ash);
     cursor: pointer;
-    transition: 0.3s;
+    transition: color .15s;
 }
 
 .btn-quantity:hover {
-    color: #6500d6;
-    transform: scale(1.2);
+    color: var(--mork-acid);
 }
 
 .quantity {
+    font-family: var(--font-mono);
     font-size: 1.2rem;
-    font-weight: bold;
-    color: #1d1d1b;
+    color: var(--mork-bone);
     min-width: 30px;
     text-align: center;
 }
@@ -125,4 +163,3 @@ footer, app-footer-generic{
     width: 100%;
     padding-top: 25px;
   }
-  

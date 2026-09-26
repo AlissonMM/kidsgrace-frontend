@@ -14,7 +14,7 @@ import {
 } from '../models/analytics.model';
 
 /**
- * Fala com o kidsgrace-analytics-service (porta separada da API principal —
+ * Fala com o morkstore-analytics-service (porta separada da API principal —
  * ver environment.analyticsApiUrl). Exige token de ADMIN; o authInterceptor
  * já anexa o header Authorization em toda requisição HttpClient, mesmo para
  * uma origem diferente da API principal.
@@ -33,6 +33,13 @@ export class AnalyticsService {
 
   getEntities(from?: string, to?: string): Observable<EntityAnalytics> {
     return this.http.get<EntityAnalytics>(`${this.apiUrl}/entities`, { params: this.rangeParams(from, to) });
+  }
+
+  // Contagem BRUTA (não percentual) de uma entidade — /analytics/entities
+  // devolve proporção (soma ~100), útil para o texto "63,6% dos eventos são
+  // de usuário", mas não para um gráfico que deve mostrar "quantos eventos".
+  getEntityCount(entity: AnalyticsEntity, from?: string, to?: string): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/entities/${entity}`, { params: this.rangeParams(from, to) });
   }
 
   getLoginStats(): Observable<LoginStats> {

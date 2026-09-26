@@ -1,7 +1,7 @@
 export interface CartItem {
   id: number;
-  toyId: number;
-  toyName: string;
+  productId: number;
+  productName: string;
   unitPrice: number;
   quantity: number;
   subtotal: number;

@@ -3,8 +3,9 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: var(--mork-void);
   }
-  
+
   .admin-container {
     flex: 1;
     display: flex;
@@ -14,28 +15,25 @@
     width: 80%;
     max-width: 800px;
     padding: 40px;
-    background-color: #dbbbff;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    border: 3px solid #5500b5;
+    background: var(--mork-surface);
+    border: 1px solid var(--mork-border);
     margin: 25px auto 0;
     text-align: center;
   }
-  
-  
+
+
   .admin-container h2{
-    color: #5500b5;
-    font-family: 'Press Start 2P', system-ui;
-    text-shadow: 1px 1px 2px #6500d6;
+    color: var(--mork-acid);
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: .01em;
     margin-bottom: 25px;
   }
   .edit-header {
     width: 100%;
-    background: linear-gradient(to right, #5500b5, #dbbbff);
-    color: #ffffff;
+    color: var(--mork-bone);
     text-align: center;
-    padding: 50px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 40px 0;
     margin-bottom: 25px;
   }
   .header-content {
@@ -44,108 +42,107 @@
     align-items: center;
     cursor: pointer;
   }
-  
-  .project-name {
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: 'Press Start 2P', system-ui;
-    margin: 0;
-  }
-  
+
   .product-card {
     width: 100%;
-    background-color: #f8f8f8;
-    border: 2px solid #5500b5;
-    border-radius: 12px;
+    background: var(--mork-surface);
+    border: 1px solid var(--mork-border);
     padding: 20px;
-    margin-bottom: 30px;
-    box-shadow: 1px 1px 8px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
     text-align: left;
   }
-  
+
   .product-info {
     display: flex;
     align-items: center;
     gap: 20px;
   }
-  
+
   .product-info img {
-    width: 165px;
-    height: 165px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
-    border-radius: 8px;
     border: none;
-  }  
-  
+  }
+
   .details p {
     margin: 6px 0;
-    color: #1d1d1b;
-    font-weight: bold;
-    font-size: 0.95rem;
+    color: var(--mork-bone);
+    font-size: .9rem;
   }
-  
+
   .action-buttons {
     margin-top: 20px;
     display: flex;
-    gap: 15px;
+    gap: 12px;
     justify-content: center;
   }
-  
+
   .btn-action {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
+    gap: 8px;
+    padding: 11px 20px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border: 2px solid;
+    background: transparent;
     cursor: pointer;
-    transition: 0.3s;
+    transition: .15s;
     width: 140px;
     justify-content: center;
   }
-  .remove-btn{
-    background-color: grey;
-    color: #ffffff;
-    font-weight: bold;
+  .remove-btn, .add-home-btn {
+    color: var(--mork-ash);
+    border-color: var(--mork-border-strong);
   }
-  .add-home-btn {
-    background-color: grey;
-    color: #ffffff;
+  .remove-btn:hover, .add-home-btn:hover {
+    color: var(--mork-bone);
+    border-color: var(--mork-bone);
   }
   .edit-btn {
-    background-color: #5500b5;
-    color: #fff;
+    color: var(--mork-acid);
+    border-color: var(--mork-acid);
   }
-  
+
   .edit-btn:hover {
-    background-color: #6500d6;
+    background: var(--mork-acid);
+    color: var(--mork-void);
   }
-  
+
   .delete-btn {
-    background-color: #ff4c4c;
-    color: #fff;
+    color: var(--mork-wound);
+    border-color: var(--mork-wound);
   }
-  
+
   .delete-btn:hover {
-    background-color: #d63333;
+    background: var(--mork-wound);
+    color: var(--mork-void);
   }
-  
+
   .add-btn {
     margin-top: 30px;
     width: auto;
-    font-size: 1rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: .82rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
     padding: 14px 30px;
-    background-color: #5500b5;
-    font-weight: bold;
-    color: #fff;
-    border: none;
+    background: var(--mork-acid);
+    color: var(--mork-void);
+    border: 2px solid var(--mork-acid);
     cursor: pointer;
-    transition: 0.3s;
-    border-radius: 8px;
+    transition: .15s;
   }
-  
+  .add-btn:hover {
+    background: var(--mork-acid-dim);
+    border-color: var(--mork-acid-dim);
+  }
+
   footer, app-footer-generic{
     width: 100%;
     padding-top: 25px;

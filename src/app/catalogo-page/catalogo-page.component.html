@@ -1,6 +1,6 @@
 <div class="catalog-header">
     <div class="header-content">
-      <h1 class="project-name" (click)="irParaHome($event)">KidsGrace</h1>
+      <h1 class="project-name" (click)="irParaHome($event)">Mork Store</h1>
     </div>
     <div class="catalog-cart">
       <a href="#" class="nav-icon" (click)="irParaCarrinhoCompra($event)">
@@ -21,12 +21,8 @@
     <div class="filters">
       <input type="text" id="search" placeholder="Buscar produtos..." [(ngModel)]="filtroTexto">
       <select id="filter-category" [(ngModel)]="filtroCategoria">
-        <option value=""></option>
         <option value="">Todos os tipos</option>
-        <option value="Action-Figure">Action Figures</option>
-        <option value="Funko">Funkos</option>
-        <option value="Estatueta">Estatuetas</option>
-        <option value="Brinquedo">Brinquedos</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.value">{{ categoria.label }}</option>
       </select>
       
       <select id="filter-price" [(ngModel)]="filtroPreco">

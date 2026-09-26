@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartConfiguration, ChartData } from 'chart.js';
+import { ChartConfiguration, ChartData, TooltipItem } from 'chart.js';
 import { AnalyticsService } from '../services/analytics.service';
 import { ProductService } from '../services/product.service';
 import { FooterGenericComponent } from '../footer-generic/footer-generic.component';
@@ -31,12 +31,24 @@ export class AdminDashboardPageComponent implements OnInit {
   entityChartData: ChartData<'pie'> = { labels: [], datasets: [{ data: [] }] };
   entityChartOptions: ChartConfiguration<'pie'>['options'] = {
     responsive: true,
-    plugins: { legend: { position: 'bottom' } }
+    plugins: {
+      legend: { position: 'bottom' },
+      tooltip: {
+        callbacks: {
+          // O valor já é percentual (vem de /analytics/entities) — deixa
+          // isso explícito no tooltip pra não parecer contagem de eventos.
+          label: (item: TooltipItem<'pie'>) => {
+            const percentual = item.parsed as number;
+            return `${item.label}: ${percentual.toFixed(1)}%`;
+          }
+        }
+      }
+    }
   };
 
   revenueChartData: ChartData<'bar'> = {
     labels: [],
-    datasets: [{ data: [], label: 'Receita (R$)', backgroundColor: '#5500b5' }]
+    datasets: [{ data: [], label: 'Receita (R$)', backgroundColor: '#ffe800' }]
   };
   revenueChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
@@ -46,7 +58,7 @@ export class AdminDashboardPageComponent implements OnInit {
 
   topProductsChartData: ChartData<'bar'> = {
     labels: [],
-    datasets: [{ data: [], label: 'Unidades vendidas', backgroundColor: '#6500d6' }]
+    datasets: [{ data: [], label: 'Unidades vendidas', backgroundColor: '#ff3fb4' }]
   };
   topProductsChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
@@ -99,7 +111,7 @@ export class AdminDashboardPageComponent implements OnInit {
           labels: entries.map(([entity]) => this.traduzirEntidade(entity)),
           datasets: [{
             data: entries.map(([, percentual]) => percentual),
-            backgroundColor: ['#5500b5', '#8b5cf6', '#d9a400']
+            backgroundColor: ['#ffe800', '#ff3fb4', '#b4122b']
           }]
         };
       },
@@ -118,7 +130,7 @@ export class AdminDashboardPageComponent implements OnInit {
         this.totalRevenue = categorias.reduce((soma, item) => soma + item.totalRevenue, 0);
         this.revenueChartData = {
           labels: categorias.map(c => c.category),
-          datasets: [{ data: categorias.map(c => c.totalRevenue), label: 'Receita (R$)', backgroundColor: '#5500b5' }]
+          datasets: [{ data: categorias.map(c => c.totalRevenue), label: 'Receita (R$)', backgroundColor: '#ffe800' }]
         };
       },
       error: (err) => this.tratarErro(err)
@@ -128,7 +140,7 @@ export class AdminDashboardPageComponent implements OnInit {
       next: (produtos) => {
         this.topProductsChartData = {
           labels: produtos.map(p => this.nomeProduto(p.entityId)),
-          datasets: [{ data: produtos.map(p => p.totalCount), label: 'Unidades vendidas', backgroundColor: '#6500d6' }]
+          datasets: [{ data: produtos.map(p => p.totalCount), label: 'Unidades vendidas', backgroundColor: '#ff3fb4' }]
         };
       },
       error: (err) => this.tratarErro(err)
@@ -152,8 +164,8 @@ export class AdminDashboardPageComponent implements OnInit {
           datasets: [{
             data: pontos.map(p => p.count),
             label: this.selectedPreset.label,
-            borderColor: '#5500b5',
-            backgroundColor: 'rgba(85,0,181,0.15)',
+            borderColor: '#ffe800',
+            backgroundColor: 'rgba(255,232,0,0.15)',
             fill: true,
             tension: 0.3
           }]

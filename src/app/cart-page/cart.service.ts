@@ -4,7 +4,7 @@ import { CartApiService } from '../services/cart-api.service';
 import { Cart } from '../models/cart.model';
 
 export interface ProdutoCarrinho {
-  id: number;          // id do brinquedo (Toy)
+  id: number;          // id do produto
   cartItemId: number;  // id da linha CartItem no backend — usado para PUT/DELETE
   nome: string;
   preco: number;
@@ -33,9 +33,9 @@ export class CartService {
 
   private mapCartToProdutos(cart: Cart): ProdutoCarrinho[] {
     return cart.items.map(item => ({
-      id: item.toyId,
+      id: item.productId,
       cartItemId: item.id,
-      nome: item.toyName,
+      nome: item.productName,
       preco: item.unitPrice,
       parcelamento: `Até 10x de R$ ${(item.unitPrice / 10).toFixed(2)} sem juros!`,
       imagem: item.image ? `data:image/jpeg;base64,${item.image}` : 'assets/default-image.jpg',
